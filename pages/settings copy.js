@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Theme from "../themes";
 import Axios from "../axios.config";
 import axios from "axios";
-import { useSelector, useDispatch } from 'react-redux'
 
 
 
@@ -15,11 +14,8 @@ function Branch({url}){
   return url;
 }
 
-
 export default function Settigns() {
   const [branchs, setBranchs] = useState([]);
-  const counter = useSelector(state => state.book.numOfBooks);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     getBranch()
@@ -32,52 +28,15 @@ export default function Settigns() {
   };
 
 
-  async function getDatabranch(){
-    const todoIdList = [1, 2, 3, 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
-    await Promise.all(
-      todoIdList.map(async (id) => {
-        // const response = await fetch('https://jsonplaceholder.typicode.com/todos/')
-        // const todo = await response.json()
-        const {data} = await axios.get('https://jsonplaceholder.typicode.com/todos/');
-
-        console.log(data)
-        dispatch({
-          type: "ADD_BOOK",
-          step: 1
-      })
-      })
-    )
-    console.timeEnd('.map()');
-  }
 
   return (
     <div>
       <div className="content-body">
-      {JSON.stringify(counter)}
 
-      <button className="btn btn-success"
-                onClick={() =>
-                    dispatch({
-                        type: "ADD_BOOK",
-                        step: 1
-                    })
-                }
-            >
-                เพิ่ม + 
-      </button>
-      {'  '}
+      <ul>
+        {todos.length > 0 ? todos.map((todo) => <li>{todo}</li>) : "No todos"}
+      </ul>
 
-            <button
-            className="btn btn-danger"
-                onClick={() =>
-                    dispatch({
-                        type: "BUY_BOOK",
-                        step: 1
-                    })
-                }
-            >
-                ลบ -
-      </button>
         <section className="row">
           <div className="col-12">
             <div className="card">
@@ -90,8 +49,7 @@ export default function Settigns() {
                   <button
                     className="btn btn-primary btn-sm"
                     onClick={() => {
-                      // getBranch();
-                      getDatabranch();
+                      getBranch();
                     }}
                   >
                     <i className="ft-plus white" /> New Task
@@ -166,8 +124,8 @@ export default function Settigns() {
                                 return (
                                   <>
                                     <tr>
-                                      <td key={i}>
-                                     
+                                      <td key={i}>{item.code}
+                                      {/* <Branch /> */}
                                       </td>
                                       <td>{item.name}</td>
                                       <td>b</td>
@@ -275,5 +233,17 @@ export default function Settigns() {
   );
 }
 
+export async function getStaticProps(){
+
+  // Get todo list from an API
+  // or from anything like a JSON file etc.
+  // const todos = await axios.get('https://jsonplaceholder.typicode.com/photos');
+const todos = [];
+  return {
+      props: {
+          todos
+      }
+  }
+}
 
 Settigns.Layout = Theme;
