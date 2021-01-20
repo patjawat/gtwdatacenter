@@ -26,8 +26,8 @@ function Example() {
   // const [value, setValue] = React.useState("");
 
   const { status, data, error, isFetching } = useQuery("todos", async () => {
-    const { data } = await axios.get("services");
-    return data.dailylogin;
+    const { data } = await axios.get("datacenter");
+    return data.infomation.authdaily;
   });
 
   if (status === "loading") return <h1>Loading...</h1>;

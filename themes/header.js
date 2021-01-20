@@ -261,34 +261,8 @@ export default function Header() {
               </li>
             </ul>
             <ul className="nav navbar-nav float-right">
-              <li className="dropdown dropdown-language nav-item">
-                <a
-                  className="dropdown-toggle nav-link"
-                  id="dropdown-flag"
-                  href="#"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="flag-icon flag-icon-gb" />
-                  <span className="selected-language" />
-                </a>
-                <div className="dropdown-menu" aria-labelledby="dropdown-flag">
-                  <a className="dropdown-item" href="#" data-language="en">
-                    <i className="flag-icon flag-icon-us" /> English
-                  </a>
-                  <a className="dropdown-item" href="#" data-language="fr">
-                    <i className="flag-icon flag-icon-fr" /> French
-                  </a>
-                  <a className="dropdown-item" href="#" data-language="pt">
-                    <i className="flag-icon flag-icon-pt" /> Portuguese
-                  </a>
-                  <a className="dropdown-item" href="#" data-language="de">
-                    <i className="flag-icon flag-icon-de" /> German
-                  </a>
-                </div>
-              </li>
-              <li className="dropdown dropdown-notification nav-item">
+              
+              {/* <li className="dropdown dropdown-notification nav-item">
                 <a
                   className="nav-link nav-link-label"
                   href="#"
@@ -438,8 +412,8 @@ export default function Header() {
                     </a>
                   </li>
                 </ul>
-              </li>
-              <li className="dropdown dropdown-notification nav-item">
+              </li> */}
+              {/* <li className="dropdown dropdown-notification nav-item">
                 <a
                   className="nav-link nav-link-label"
                   href="#"
@@ -589,7 +563,7 @@ export default function Header() {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               <li className="dropdown dropdown-user nav-item">
                 <a
                   className="dropdown-toggle nav-link dropdown-user-link"

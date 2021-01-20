@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Axios from '../axios.config'
 import {
   useQuery,
-  useQueryClient,
-  useMutation,
   QueryClient,
   QueryClientProvider,
 } from "react-query";
@@ -28,8 +26,8 @@ function Summary() {
     return data;
   });
 
-  if (status === "loading") return <h1>Loading...</h1>;
-  if (status === "error") return <span>Error: {error.message}</span>;
+  // if (status === "loading") return <h3>Loading...</h3>;
+  // if (status === "error") return <span>Error: {error.message}</span>;
 
   return (
     <div className="row">
@@ -40,7 +38,7 @@ function Summary() {
               <div className="media d-flex">
                 <div className="media-body text-left">
                   {/* <h3 className="info">{JSON.stringify(summary.assets)}</h3> */}
-                  <h3 className="info">{data.assets.total}</h3>
+                  <h3 className="info">{status === "loading" ? <i class="la la-spinner spinner"></i> : data.assets.total}</h3>
                   <h6>ทรัพย์สิน(รายการ)</h6>
                 </div>
                 <div>
@@ -60,8 +58,8 @@ function Summary() {
             <div className="card-body">
               <div className="media d-flex">
                 <div className="media-body text-left">
-                  <h3 className="warning">$748</h3>
-                  <h6>ปริมานการใช้งาน</h6>
+                  <h3 className="warning">0</h3>
+                  <h6>บัญชี</h6>
                 </div>
                 <div>
                   <i className="icon-pie-chart warning font-large-2 float-right" />
@@ -80,7 +78,7 @@ function Summary() {
             <div className="card-body">
               <div className="media d-flex">
                 <div className="media-body text-left">
-                  <h3 className="success">{data.person.total}</h3>
+                  <h3 className="success">{status === "loading" ? <i class="la la-spinner spinner"></i> : data.person.total}</h3>
                   <h6>บุคคลากร</h6>
                 </div>
                 <div>
@@ -100,8 +98,8 @@ function Summary() {
             <div className="card-body">
               <div className="media d-flex">
                 <div className="media-body text-left">
-                  <h3 className="danger">99.89 %</h3>
-                  <h6>Customer Satisfaction</h6>
+                  <h3 className="danger">0</h3>
+                  <h6>soon</h6>
                 </div>
                 <div>
                   <i className="icon-heart danger font-large-2 float-right" />

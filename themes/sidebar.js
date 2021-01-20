@@ -27,14 +27,14 @@ export default function sidebar() {
               </a>
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link href="/settings">
               <a>
                 <i className="la la-cog" />
                 <span className="menu-title">Settings</span>
               </a>
             </Link>
-          </li>
+          </li> */}
 
         </ul>
         <div className="ps__rail-x" style={{ left: 0, bottom: 0 }}>
