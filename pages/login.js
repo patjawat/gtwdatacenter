@@ -9,9 +9,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export default function Login() {
-  // const [username, setusername] = useState('ryan@gmail.com');
-  // const [password, setPassword] = useState('rrrrrr9');
-  // const [user, setUser] = useState('rrrrrr9');
   const auth = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -45,17 +42,18 @@ export default function Login() {
                 <div className="card border-grey border-lighten-3 px-1 py-1 m-0">
                   <div className="card-header border-0">
                     <div className="card-title text-center">
-                      <img
+                      {/* <img
                         src="../../../app-assets/images/logo/logo-dark.png"
                         alt="branding logo"
-                      />
+                      /> */}
+                      <h3>Authentication</h3>
                     </div>
-                    <h6 className="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
+                    {/* <h6 className="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
                       <span>Easily Using</span>
-                    </h6>
+                    </h6> */}
                   </div>
                   <div className="card-content">
-                    <div className="text-center">
+                    {/* <div className="text-center">
                       <a
                         href="#"
                         className="btn btn-social-icon mr-1 mb-1 btn-outline-facebook"
@@ -83,11 +81,11 @@ export default function Login() {
                     </div>
                     <p className="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1">
                       <span>OR Using Account Details</span>
-                    </p>
+                    </p> */}
                     <div className="card-body">
                       <Formik
                         initialValues={{
-                          username: "patjawat",
+                          username: "demo",
                           password: "112233",
                         }}
                         validate={(values) => {
