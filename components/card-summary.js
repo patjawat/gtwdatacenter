@@ -1,33 +1,46 @@
-import React,{useState,useEffect} from 'react'
-import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react'
 import Axios from '../axios.config'
-export default function cardsummary() {
+import {
+  useQuery,
+  useQueryClient,
+  useMutation,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
+const queryClient = new QueryClient();
+
+export default function TotalSummary() {
+  return (
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Summary />
+      </QueryClientProvider>
+    </>
+  );
+}
+
+function Summary() {
 
   const url = process.env.api;
 
+  const { status, data, error, isFetching } = useQuery("summary", async () => {
+    const { data } = await Axios.get(url + 'datacenter');
+    return data;
+  });
 
-  const  [summary,setSummary] = useState([]);
-
-  const getSummary = async () =>{
-    const {data} = await Axios.get(url+'datacenter');
-    console.log(data)
-  }
-  useEffect(() => {
-    // getSummary()
-
-  }, [])
+  if (status === "loading") return <h1>Loading...</h1>;
+  if (status === "error") return <span>Error: {error.message}</span>;
 
   return (
     <div className="row">
-      <button className="btn btn-success" onClick={getSummary}>Load</button>
       <div className="col-xl-3 col-lg-6 col-12">
         <div className="card pull-up">
           <div className="card-content">
             <div className="card-body">
               <div className="media d-flex">
                 <div className="media-body text-left">
-                  <h3 className="info">850</h3>
+                  {/* <h3 className="info">{JSON.stringify(summary.assets)}</h3> */}
+                  <h3 className="info">{data.assets.total}</h3>
                   <h6>ทรัพย์สิน(รายการ)</h6>
                 </div>
                 <div>
@@ -67,8 +80,8 @@ export default function cardsummary() {
             <div className="card-body">
               <div className="media d-flex">
                 <div className="media-body text-left">
-                  <h3 className="success">146</h3>
-                  <h6>New Customers</h6>
+                  <h3 className="success">{data.person.total}</h3>
+                  <h6>บุคคลากร</h6>
                 </div>
                 <div>
                   <i className="icon-user-follow success font-large-2 float-right" />
@@ -102,6 +115,5 @@ export default function cardsummary() {
         </div>
       </div>
     </div>
-
   )
 }

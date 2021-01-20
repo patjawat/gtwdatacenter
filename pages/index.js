@@ -11,8 +11,8 @@ export default function Home() {
    <>
    
    <Cardsummary />
-   {/* <OrderList />
-   <Inventory /> */}
+   <OrderList />
+   <Inventory />
 
    </>
   )
