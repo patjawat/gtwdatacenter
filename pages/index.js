@@ -14,20 +14,19 @@ export default function Home() {
   return (
    <>
 {/* <Dankmemes /> */}
+
    <TotalSummary />
-{/* <ChartSuumary /> */}
           <BranchSummaryChart />
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
+
    <div className="row match-height mt-5">
-        <div className="col-xl-12 col-12" id="ecommerceChartView">
+        <div className="col-xl-12 col-md-8 col-lg-8">
             
           <div className="widget-content tab-content bg-white p-20" style={{height:'650px'}}>
           {/* <h1 className="text-center">Soon</h1> */}
           </div>
+        </div>
+        <div className="col-xl-12 col-md-4 col-lg-4">
+xx
         </div>
 
       </div>

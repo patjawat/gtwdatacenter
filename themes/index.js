@@ -41,7 +41,6 @@ export default function AdminLte3({ children }) {
 
   const getData = async () => {
     const { data } = await axios.get('datacenter')
-    console.log(data);
     dispatch({type: 'GET_INFOMATION',payload: data});
   }
 
