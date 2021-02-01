@@ -5,12 +5,14 @@ import authReducer from './auth/authReducer'
 import themeReducer from './themes/themeReducer'
 import bookReducer from './book/bookReducer'
 import userReducer from './user/userReducer'
+import infomationReducer from './infomation/infomationReducer'
 
 const rootReducer = combineReducers({
   auth:authReducer,
   theme:themeReducer,
   book:bookReducer,
-  user:userReducer
+  user:userReducer,
+  infomation:infomationReducer
 })
 
 export default rootReducer;

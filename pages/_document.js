@@ -15,27 +15,25 @@ class MyDocument extends Document {
           rel="stylesheet"
         ></link>
 
-{/* <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100i,300i,400,400i,600,600i,700,700&family=Open+Sans:wght@300&display=swap" rel="stylesheet"></link> */}
+{/* <link href="static/https://fonts.googleapis.com/css2?family=Kanit:wght@100i,300i,400,400i,600,600i,700,700&family=Open+Sans:wght@300&display=swap" rel="stylesheet"></link> */}
 
         
 
     <div>
   {/* BEGIN: Vendor CSS*/}
-  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css" />
-  {/* END: Vendor CSS*/}
-  {/* BEGIN: Theme CSS*/}
-  <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.css" />
-  <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.css" />
-  <link rel="stylesheet" type="text/css" href="app-assets/css/colors.css" />
-  <link rel="stylesheet" type="text/css" href="app-assets/css/components.css" />
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu-modern.css" />
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css" />
-  <link rel="stylesheet" type="text/css" href="app-assets/fonts/simple-line-icons/style.css" />
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css" />
-  {/* END: Page CSS*/}
-  {/* BEGIN: Custom CSS*/}
-  {/* <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> */}
-  {/* END: Custom CSS*/}
+  <link rel="stylesheet" type="text/css" href="static/vendors/css/vendors.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap-extended.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/colors.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/components.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/core/menu/menu-types/vertical-menu-modern.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/core/colors/palette-gradient.css" />
+  <link rel="stylesheet" type="text/css" href="static/fonts/simple-line-icons/style.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/core/colors/palette-gradient.css" />
+
+  {/* <link rel="stylesheet" type="text/css" href="static/assets/css/style.css" /> */}
+
 </div>
 
 
@@ -62,11 +60,10 @@ class MyDocument extends Document {
           <NextScript />
 
 
-    <script src="app-assets/vendors/js/vendors.min.js"></script>
-
-    <script src="app-assets/data/jvector/visitor-data.js"></script>
-    <script src="app-assets/js/core/app-menu.js"></script>
-    <script src="app-assets/js/core/app.js"></script>
+        <script src="static/vendors/js/vendors.min.js"></script>
+        <script src="static/data/jvector/visitor-data.js"></script>
+        <script src="static/js/core/app-menu.js"></script>
+        <script src="static/js/core/app.js"></script>
 
         </body>
       </Html>

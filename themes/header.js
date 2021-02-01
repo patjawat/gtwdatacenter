@@ -4,11 +4,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 
-
 export default function Header() {
   const store = useSelector(state => state);
   const username = store.user ? store.user.profile.name : null;
-  
+
   const router = useRouter();
 
   return (
@@ -25,13 +24,8 @@ export default function Header() {
               </a>
             </li>
             <li className="nav-item mr-auto">
-              <a className="navbar-brand" href="index.html">
-                <img
-                  className="brand-logo"
-                  alt="modern admin logo"
-                  src="../../../app-assets/images/logo/logo.png"
-                />
-                <h3 className="brand-text">GTWDatacenter</h3>
+              <a className="navbar-brand" href="#">
+                <h3 className="brand-text">Datacenter</h3>
               </a>
             </li>
             <li className="nav-item d-none d-lg-block nav-toggle">
@@ -570,13 +564,14 @@ export default function Header() {
                   href="#"
                   data-toggle="dropdown"
                 >
-                  <span className="mr-1 user-name text-bold-700">{username}</span>
+                  <span className="mr-1 user-name text-bold-700">{username ? username : ''}</span>
+                  <i className="ft-user" style={{fontSize: '23px'}}/>
                   <span className="avatar avatar-online">
-                    <img
-                      src="../../../app-assets/images/portrait/small/avatar-s-19.png"
+                    {/* <img
+                      src="static/images/portrait/small/avatar-s-19.png"
                       alt="avatar"
-                    />
-                    <i />
+                    /> */}
+                  
                   </span>
                 </a>
                 <div className="dropdown-menu dropdown-menu-right">

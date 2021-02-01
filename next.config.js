@@ -9,12 +9,13 @@ const result = Object.assign({os:resultOs}, {client:resultClient}, {device: resu
 // console.log('Result parse lite', result);
 
 module.exports = {
-  // paths :'datacenterv2',
+  distDir: 'build',
+  // basePath: '/datacenterv2',
   // basePath: '',
     env: {
       customKey: 'my-value',
-      // api:'http://127.0.0.1:8001/api/',
-      api:'http://43.229.149.13:81/gtwdatacenter-api/api/',
+      api:'http://127.0.0.1:8001/api/',
+      // api:'http://43.229.149.13:81/gtwdatacenter-api/api/',
       device:result,
     },
     module: {

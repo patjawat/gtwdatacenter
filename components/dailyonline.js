@@ -21,9 +21,6 @@ export default function dailyonline() {
 }
 
 function Example() {
-  // const queryClient = useQueryClient();
-  // const [intervalMs, setIntervalMs] = React.useState(1000);
-  // const [value, setValue] = React.useState("");
 
   const { status, data, error, isFetching } = useQuery("todos", async () => {
     const { data } = await axios.get("datacenter");
@@ -35,7 +32,7 @@ function Example() {
 
   return (
     <div>
-      <div className="card" style={{ height: 421, zoom: 1 }}>
+      <div className="card">
         <div className="card-header">
           <h4 className="card-title">
             <i className="ft-activity text-danger"></i> ปริมาณการใช้งานรายวัน
@@ -105,9 +102,6 @@ function Example() {
           </div>
         </div>
       </div>
-
-      <div></div>
-      {/* <ReactQueryDevtools initialIsOpen /> */}
     </div>
   );
 }

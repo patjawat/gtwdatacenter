@@ -16,7 +16,6 @@ import store from '../redux/store'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../styles/globals.css'
 
-
 export default function MyApp({ Component, pageProps, ...rest }) {
   
   const [loading, setLoading] = useState(false)

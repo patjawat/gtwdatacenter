@@ -7,10 +7,11 @@ import { connect } from "react-redux";
 import { Formik } from "formik";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Spinner } from 'reactstrap';
 
 export default function Login() {
   const auth = useSelector((state) => state.auth);
-
+const [loading,setLoading] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
   const history = useHistory();
@@ -23,11 +24,6 @@ export default function Login() {
   //   }
 
   // }, [user])
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("login with ", { username, password });
-  };
 
   return (
 
@@ -42,46 +38,10 @@ export default function Login() {
                 <div className="card border-grey border-lighten-3 px-1 py-1 m-0">
                   <div className="card-header border-0">
                     <div className="card-title text-center">
-                      {/* <img
-                        src="../../../app-assets/images/logo/logo-dark.png"
-                        alt="branding logo"
-                      /> */}
-                      <h3>Authentication</h3>
+                      <h3><i className="fas fa-fingerprint fa-lg"></i>{' '}Authentication</h3>
                     </div>
-                    {/* <h6 className="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
-                      <span>Easily Using</span>
-                    </h6> */}
                   </div>
                   <div className="card-content">
-                    {/* <div className="text-center">
-                      <a
-                        href="#"
-                        className="btn btn-social-icon mr-1 mb-1 btn-outline-facebook"
-                      >
-                        <span className="la la-facebook" />
-                      </a>
-                      <a
-                        href="#"
-                        className="btn btn-social-icon mr-1 mb-1 btn-outline-twitter"
-                      >
-                        <span className="la la-twitter" />
-                      </a>
-                      <a
-                        href="#"
-                        className="btn btn-social-icon mr-1 mb-1 btn-outline-linkedin"
-                      >
-                        <span className="la la-linkedin font-medium-4" />
-                      </a>
-                      <a
-                        href="#"
-                        className="btn btn-social-icon mr-1 mb-1 btn-outline-github"
-                      >
-                        <span className="la la-github font-medium-4" />
-                      </a>
-                    </div>
-                    <p className="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1">
-                      <span>OR Using Account Details</span>
-                    </p> */}
                     <div className="card-body">
                       <Formik
                         initialValues={{
@@ -105,6 +65,7 @@ export default function Login() {
                           return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
+                          setLoading(true);
                           axios
                             .post(url + "login", values)
                             .then((res) => {
@@ -122,7 +83,12 @@ export default function Login() {
                             .then((res) => {
                               // dispatch({type: 'GET_USER',payload: res.data});
                               console.log(res);
-                            });
+
+                            }).catch(error => {
+                              console.log(error)
+                              setLoading(false);
+
+                          });
                         }}
                       >
                         {({
@@ -199,7 +165,9 @@ export default function Login() {
                               type="submit"
                               className="btn btn-outline-info btn-block"
                             >
-                              <i className="ft-unlock" /> Login
+                              
+                             { loading ?  <Spinner style={{ width: '1rem', height: '1rem' }} /> : <i className="ft-unlock" /> }{' '}
+                              Login
                             </button>
                           </form>
                         )}
