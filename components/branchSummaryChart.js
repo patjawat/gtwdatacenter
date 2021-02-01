@@ -14,8 +14,6 @@ function ChartSmmery() {
   const store = useSelector((state) => state);
 
   useEffect(() => {
-
-    // loadData()
     chart()
   });
 
@@ -24,10 +22,6 @@ function ChartSmmery() {
 
 
   const chart = async () => {
-// const num = [3, 8, 11, 7, 5];
-// const num2x = num.map((n) => n * 2);
-// console.log(num2x); // [6, 16, 22, 14, 10]
-
 
 const {data:{person}} = await  Axios.get('datacenter');
 
@@ -76,7 +70,7 @@ person.datasets.label.map((item,i) =>{
     let datasets = [];
 
     store.infomation.person.datasets.data.map((item,i) => {
-
+      console.log(i)
 
     });
 
