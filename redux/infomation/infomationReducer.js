@@ -3,7 +3,7 @@ import infomationType from './infomationType';
 
 
 const initialState = {
-    data:null
+    data:[]
 }
 
 function userReducer(state = null, action) {

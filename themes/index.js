@@ -14,7 +14,7 @@ export default function AdminLte3({ children }) {
   const store = useSelector((state) => state);
   const token = Cookies.get("token");
 
-  useEffect(() => {
+  useEffect( async () => {
   //   (async () => {
   //     // ตรวจสอบ user Login
   //     if(!token){
@@ -35,7 +35,7 @@ export default function AdminLte3({ children }) {
   //     }
   //     // จบดารตรวจสอบ User login
   //   })();
-  getData()
+  await getData()
   }, []);
 
 

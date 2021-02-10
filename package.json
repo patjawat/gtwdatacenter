@@ -29,6 +29,7 @@
         "react-hook-form": "^6.9.3",
         "react-hooks-paginator": "^0.4.4",
         "react-loading-skeleton": "^2.1.1",
+        "react-number-format": "^4.4.4",
         "react-paginate": "^6.5.0",
         "react-query": "^3.5.11",
         "react-redux": "^7.2.1",
