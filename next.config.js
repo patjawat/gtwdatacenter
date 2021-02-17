@@ -10,7 +10,7 @@ const result = Object.assign({os:resultOs}, {client:resultClient}, {device: resu
 
 module.exports = {
   distDir: 'build',
-  basePath: '/datacenterv2',
+  // basePath: '/datacenterv2',
   // basePath: '',
     env: {
       customKey: 'my-value',

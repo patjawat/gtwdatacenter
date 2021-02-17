@@ -124,6 +124,7 @@ function ChartSmmery(props) {
                         <th className="border-top-0">จังหวัด</th>
                         <th className="border-top-0">ครุภัณฑ์</th>
                         <th className="border-top-0">สิ่งก่อสร้าง</th>
+                        <th className="border-top-0">วันที่ปรับปรุง</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -147,6 +148,9 @@ function ChartSmmery(props) {
                                 <NumberFormat value={item.person} displayType={'text'} thousandSeparator={true} prefix={''} />
                                 </td>
                               <td className="text-truncate"><NumberFormat value={item.assetbuildings} displayType={'text'} thousandSeparator={true} prefix={''} /></td>
+                              <td className="text-truncate">
+                                {item.lastupdate}
+                              </td>
                             </tr>
                           );
                         }) : []}
