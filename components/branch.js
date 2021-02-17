@@ -1,18 +1,46 @@
 import React from 'react'
 import { useSelector } from "react-redux";
+import axios from "../axios.config";
+import NumberFormat from 'react-number-format';
 
+import {
+  useQuery,
+  useQueryClient,
+  useMutation,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
+
+
+const queryClient = new QueryClient();
 
 export default function Branch() {
-  const store = useSelector((state) => state);
-  if(!store) return <h3>Loading...</h3>;
-  if (store.infomation === null) return <h3>Loading...</h3>;
+  return (
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Example />
+      </QueryClientProvider>
+    </>
+  );
+}
+
+
+function Example() {
+  const { status, data, error, isFetching } = useQuery("todos", async () => {
+    const { data } = await axios.get("datacenter/branchs");
+    return data;
+  });
+
+  if (status === "loading") return <h1>Loading...</h1>;
+  if (status === "error") return <span>Error: {error.message}</span>;
+
 
     return (
         <div className="row mt-1">
   <div id="recent-transactions" className="col-12">
     <div className="card">
       <div className="card-header">
-        <h4 className="card-title">{store.infomation.infomation.branchs.label}</h4>
+        <h4 className="card-title">หน่วยบริการ</h4>
         <a className="heading-elements-toggle"><i className="la la-ellipsis-v font-medium-3" /></a>
         <div className="heading-elements">
           <ul className="list-inline mb-0">
@@ -32,12 +60,13 @@ export default function Branch() {
                 <th className="border-top-0">ขนาด</th>
                 <th className="border-top-0">บุคคลากร</th>
                 <th className="border-top-0">ทรัพย์สิน</th>
+                <th className="border-top-0">สิ่งก่อสร้าง</th>
                 {/* <th className="border-top-0">soon</th>
                 <th className="border-top-0">Amount</th> */}
               </tr>
             </thead>
             <tbody>
-            {store.infomation.infomation.branchs.items.sort((a, b) => b.summaryPerson - a.summaryPerson).map((item, i) => (
+            {data.sort((a, b,) => b.person - a.person).map((item, i) => (
             
 
               <tr key={i}>
@@ -47,10 +76,13 @@ export default function Branch() {
                   <button type="button" className="btn btn-sm btn-outline-danger round">{item.service_plan}</button>
                 </td>
                 <td>
-                 {item.summaryPerson}
+                <NumberFormat value={item.person} displayType={'text'} thousandSeparator={true} prefix={''} />
                 </td>
                 <td>
-                  {item.summaryAsset}
+                <NumberFormat value={item.asset} displayType={'text'} thousandSeparator={true} prefix={''} />
+                </td>
+                <td>
+                <NumberFormat value={item.assetbuildings} displayType={'text'} thousandSeparator={true} prefix={''} />
                 </td>
                 {/* <td>
                   <div className="progress progress-sm mt-1 mb-0 box-shadow-2">
@@ -67,6 +99,6 @@ export default function Branch() {
     </div>
   </div>
 </div>
-
-    )
+)
+  
 }

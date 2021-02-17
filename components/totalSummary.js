@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import NumberFormat from 'react-number-format';
 
 import Axios from '../axios.config'
 
@@ -25,7 +26,7 @@ export default function TotalSummary(){
             <div className="card-body">
               <div className="media d-flex">
                 <div className="media-body text-left">
-                  <h3 className="success">{store.infomation === null ? <i className="la la-spinner spinner"></i> : store.infomation.person.total}</h3>
+                  <h3 className="success">{store.infomation === null ? <i className="la la-spinner spinner"></i> : <NumberFormat value={store.infomation.person.total} displayType={'text'} thousandSeparator={true} prefix={''} />}</h3>
                   <h6>บุคคลากร</h6>
                 </div>
                 <div>
@@ -49,7 +50,7 @@ export default function TotalSummary(){
               <div className="media d-flex">
                 <div className="media-body text-left">
                   {/* <h3 className="info">{JSON.stringify(summary.assets)}</h3> */}
-                  <h3 className="info">{store.infomation === null ? <i className="la la-spinner spinner"></i> : store.infomation.assets.total}</h3>
+                  <h3 className="info">{store.infomation === null ? <i className="la la-spinner spinner"></i> : <NumberFormat value={store.infomation.assets.total} displayType={'text'} thousandSeparator={true} prefix={''} />}</h3>
                   <h6>ทรัพย์สิน(รายการ)</h6>
                 </div>
                 <div>
@@ -76,7 +77,7 @@ export default function TotalSummary(){
             <div className="card-body">
               <div className="media d-flex">
                 <div className="media-body text-left">
-                  <h3 className="danger">{store.infomation === null ? <i className="la la-spinner spinner"></i> : store.infomation.infomation.branchs.total}</h3>
+                  <h3 className="danger">{store.infomation === null ? <i className="la la-spinner spinner"></i> : <NumberFormat value={store.infomation.branchs.total} displayType={'text'} thousandSeparator={true} prefix={''} />}</h3>
                   <h6>หน่วยบริการ</h6>
                 </div>
                 <div>

@@ -12,7 +12,6 @@ import GroupChartSummary from "../components/groupChartSummary"
 export default function Home(props) {
   return (
    <>
-   {JSON.stringify(props.msg)}
    <TotalSummary />
     <GroupChartSummary />
    <Branch />
@@ -23,7 +22,6 @@ Home.Layout =Theme;
 
 export async function getStaticProps(context) {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts`)
-  // const data = await res.json()
   const posts = await res.json()
 
   if (!posts) {
