@@ -10,14 +10,14 @@ const result = Object.assign({os:resultOs}, {client:resultClient}, {device: resu
 
 module.exports = {
   distDir: 'build',
-  // basePath: '/datacenterv2',
+  basePath: '/datacenterv2',
   // basePath: '',
     env: {
       customKey: 'my-value',
       // api:'http://192.168.1.165:8001/api/',
-      api:'http://127.0.0.1:8001/api/',
+      // api:'http://127.0.0.1:8001/api/',
       // api:'http://43.229.149.13:81/gtwdatacenter-api/api/',
-      // api:'http://27.254.191.157:81/gtwdatacenter-api/api/',
+      api:'http://27.254.191.157:81/gtwdatacenter-api/api/',
       device:result,
     },
     module: {

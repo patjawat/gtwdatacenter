@@ -26,31 +26,32 @@ function ChartSmmery(props) {
     const gradient = ctx.createLinearGradient(0, 0, 100, 0);
 
     const purple_orange_gradient = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient.addColorStop(0, "#17B169");
-    purple_orange_gradient.addColorStop(1, "#01BAEF");
-
-    const purple_orange_gradient0 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient0.addColorStop(0, "orange");
-    purple_orange_gradient0.addColorStop(1, "purple");
-
+    purple_orange_gradient.addColorStop(0, "#0c84d1");
+    purple_orange_gradient.addColorStop(1, "#4eb4f5");
+    
     const purple_orange_gradient1 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient1.addColorStop(0, "orange");
-    purple_orange_gradient1.addColorStop(1, "purple");
+    purple_orange_gradient1.addColorStop(1, "#ff1635");
+    purple_orange_gradient1.addColorStop(0, "#ff7c8d");
 
-    const purple_orange_gradient2 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient2.addColorStop(0, "mediumorchid");
-    purple_orange_gradient2.addColorStop(1, "blueviolet");
+    // const purple_orange_gradient0 = ctx.createLinearGradient(0, 0, 0, 600);
+    // purple_orange_gradient0.addColorStop(0, "orange");
+    // purple_orange_gradient0.addColorStop(1, "purple");
 
-    const purple_orange_gradient3 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient3.addColorStop(0, "chocolate");
-    purple_orange_gradient3.addColorStop(1, "blueviolet");
+
+    // const purple_orange_gradient2 = ctx.createLinearGradient(0, 0, 0, 600);
+    // purple_orange_gradient2.addColorStop(0, "mediumorchid");
+    // purple_orange_gradient2.addColorStop(1, "blueviolet");
+
+    // const purple_orange_gradient3 = ctx.createLinearGradient(0, 0, 0, 600);
+    // purple_orange_gradient3.addColorStop(0, "chocolate");
+    // purple_orange_gradient3.addColorStop(1, "blueviolet");
 
 
     let datasets = [];
        datasets.push({
         label:'ครุภัณฑ์',
-        backgroundColor: purple_orange_gradient2,
-        hoverBackgroundColor: purple_orange_gradient2,
+        backgroundColor: purple_orange_gradient,
+        hoverBackgroundColor: purple_orange_gradient,
         data: [...new Set(provinceSummery.map((n) => n.person))]
       },
       {
@@ -81,8 +82,8 @@ function ChartSmmery(props) {
 
             <Bar
               data={data}
-              width={400}
-              height={250}
+              // width={400}
+              height={180}
               options={{
                 responsive: true,
                 title: { text: "ข้อมูลสิ่งที่มีอยู่", display: true },
