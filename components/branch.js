@@ -61,6 +61,7 @@ function Example() {
                 <th className="border-top-0">บุคคลากร</th>
                 <th className="border-top-0">ทรัพย์สิน</th>
                 <th className="border-top-0">สิ่งก่อสร้าง</th>
+                <th className="border-top-0">ปรับปรุงล่าสุด</th>
                 {/* <th className="border-top-0">soon</th>
                 <th className="border-top-0">Amount</th> */}
               </tr>
@@ -83,6 +84,9 @@ function Example() {
                 </td>
                 <td>
                 <NumberFormat value={item.assetbuildings} displayType={'text'} thousandSeparator={true} prefix={''} />
+                </td>
+                <td>
+                  {item.lastupdate}
                 </td>
                 {/* <td>
                   <div className="progress progress-sm mt-1 mb-0 box-shadow-2">
