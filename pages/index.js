@@ -3,8 +3,6 @@ import styles from '../styles/Home.module.css'
 import Theme from "../themes";
 
 import TotalSummary from "../components/totalSummary"
-import OrderList from "../components/card-orderlist"
-import Dailyonline from "../components/dailyonline"
 import Branch from "../components/branch"
 import GroupChartSummary from "../components/groupChartSummary"
 
