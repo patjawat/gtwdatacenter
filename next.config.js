@@ -15,16 +15,6 @@ module.exports = {
       api:'http://27.254.191.157:81/gtwdatacenter-api/api/',
       device:result,
     },
-      exportPathMap: async function (
-        defaultPathMap,
-        { dev, dir, outDir, distDir, buildId }
-      ) {
-        return {
-          '/': { page: '/' },
-          '/persons': { page: '/persons' },
-          '/assets': { page: '/assets' },
-        }
-      },
     module: {
       rules: [
         {

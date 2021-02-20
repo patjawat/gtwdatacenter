@@ -8,7 +8,6 @@ function ChartSmmery(props) {
   const store = useSelector((state) => state.infomation);
   const [dataset, setDataset] = useState([]);
   const [typeGroup, setTypeGroup] = useState([]);
-  const [labelChart, setLabelChart] = useState('ข้อมูลสิ่งที่มีอยู่');
 
   useEffect(async () => {
     await getDataset();
@@ -20,13 +19,12 @@ function ChartSmmery(props) {
     setTypeGroup(data);
   };
 
-  const data = (canvas) => {
+  const dataChart = (canvas) => {
     const ctx = canvas.getContext("2d");
 
     const purple_orange_gradient = ctx.createLinearGradient(0, 0, 0, 600);
     purple_orange_gradient.addColorStop(0, "#0c84d1");
     purple_orange_gradient.addColorStop(1, "#4eb4f5");
-    
 
     const purple_orange_gradient1 = ctx.createLinearGradient(0, 0, 0, 600);
     purple_orange_gradient1.addColorStop(1, "#ff1635");
@@ -66,12 +64,12 @@ function ChartSmmery(props) {
                   <div className="card-body">
                     <div className="rickshaw-wrap">
                       <Bar
-                        data={data}
+                        data={dataChart}
                         // width={400}
                         height={150}
                         options={{
                           responsive: true,
-                          title: { text: labelChart, display: true },
+                          title: { text: "ข้อมูลสิ่งที่มีอยู่", display: true },
                         }}
                       />
                       <div className="rickshaw-legend-wrap">
@@ -112,7 +110,6 @@ function ChartSmmery(props) {
                                       }
                                     );
                                     setDataset(data);
-                                    setLabelChart('ข้อมูลสิ่งที่มีอยู่จังหวัด'+item.name);
                                     console.log(data);
                                   }}
                                 >
