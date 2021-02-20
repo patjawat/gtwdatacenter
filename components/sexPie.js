@@ -89,31 +89,19 @@ function PieChart() {
             "rgb(255, 205, 86)",
           ],
           hoverOffset: 4,
+          options:{
+            responsive: true,
+            legend: {
+              position: "bottom",
+            },
+          }
         },
       ],
-      options: {
-        responsive: true,
-        legend: {
-          position: "right",
-        },
-      },
-    };
+      };
   };
 
   return (
     <div>
-      <div className="row">
-        <div className="col-12">
-        <div className="card pull-up" style={{height:'359px'}}>
-            <div className="card-header">
-              <a className="heading-elements-toggle">
-                <i className="la la-ellipsis-h font-medium-3" />
-              </a>
-              <div className="heading-elements">
-              </div>
-            </div>
-            <div className="card-content collapse show">
-
           <Doughnut
             data={dataChart}
             // width={400}
@@ -121,18 +109,15 @@ function PieChart() {
             options={{
               responsive: true,
               maintainAspectRatio: false,
-              cutoutPercentage: 80,
+              cutoutPercentage: 50,
               responsive: true,
               title: {
-                text: "ภาพรวมบุคลากรทั้งหมดของเขตสุขภาพที่ 1",
-                display: true,
+                text: "ร้อยละบุคคลแยกตามเพศ",
+                display:false,
               },
             }}
           />
-        </div>
-        </div>
-        </div>
-      </div>
+   
     </div>
   );
 }

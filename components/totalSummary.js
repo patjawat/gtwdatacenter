@@ -1,124 +1,132 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import NumberFormat from 'react-number-format';
+import NumberFormat from "react-number-format";
 
-import Axios from '../axios.config'
+import Axios from "../axios.config";
 
+export default function TotalSummary() {
+  const [person, setPerson] = useState(0);
+  const [asset, setAsset] = useState(0);
+  const [branch, setBranch] = useState(0);
 
-export default function TotalSummary(){
+  useEffect(async () => {
+    await getData();
+  }, []);
 
-  const store = useSelector((state) => state);
- 
-  // if (store.infomation === null) return <h3>Loading...</h3>;
+  const getData = async () => {
+    const person = await Axios.get("datacenter/persons/total");
+    const asset = await Axios.get("datacenter/persons/total");
 
-
-  // if (status === "loading") return <h3>Loading...</h3>;
-  // if (status === "error") return <span>Error: {error.message}</span>;
+    setPerson(person.data);
+    setAsset(asset.data);
+  };
 
   return (
     <div className="row">
-
-<div className="col-xl-3 col-lg-6 col-12">
-<Link href="/persons">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="media-body text-left">
-                  <h3 className="success">{store.infomation === null ? <i className="la la-spinner spinner"></i> : <NumberFormat value={store.infomation.person.total} displayType={'text'} thousandSeparator={true} prefix={''} />}</h3>
-                  <h6>บุคคลากร</h6>
+      <div className="col-xl-3 col-lg-6 col-12">
+        <Link href="/persons">
+          <div class="card bg-gradient-directional-info">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="align-self-center">
+                    <i class="icon-user text-white font-large-2 float-left"></i>
+                  </div>
+                  <div class="media-body text-white text-right">
+                    <h3 class="text-white">
+                      <NumberFormat
+                        value={person}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={""}
+                      />
+                    </h3>
+                    <span>
+                      บุคคลากร
+                      {JSON.stringify(person)}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <i className="icon-user-follow success font-large-2 float-right" />
-                </div>
-              </div>
-              <div className="progress progress-sm mt-1 mb-0 box-shadow-2">
-                <div className="progress-bar bg-gradient-x-success" role="progressbar" style={{ width: '75%' }} aria-valuenow={75} aria-valuemin={0} aria-valuemax={100} />
               </div>
             </div>
           </div>
-        </div>
-</Link>
+        </Link>
       </div>
 
       <div className="col-xl-3 col-lg-6 col-12">
-      <Link href="/assets">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="media-body text-left">
-                  {/* <h3 className="info">{JSON.stringify(summary.assets)}</h3> */}
-                  <h3 className="info">{store.infomation === null ? <i className="la la-spinner spinner"></i> : <NumberFormat value={store.infomation.assets.total} displayType={'text'} thousandSeparator={true} prefix={''} />}</h3>
-                  <h6>ทรัพย์สิน(รายการ)</h6>
+        <Link href="/assets">
+          <div class="card bg-gradient-directional-success">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="align-self-center">
+                    <i class="icon-user text-white font-large-2 float-left"></i>
+                  </div>
+                  <div class="media-body text-white text-right">
+                    <h3 class="text-white">
+                      <NumberFormat
+                        value={asset}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={""}
+                      />
+                    </h3>
+
+                    <span>ทรัพย์สิน(รายการ)</span>
+                  </div>
                 </div>
-                <div>
-                  <i className="icon-basket-loaded info font-large-2 float-right" />
-                </div>
-              </div>
-              <div className="progress progress-sm mt-1 mb-0 box-shadow-2">
-                <div className="progress-bar bg-gradient-x-info" role="progressbar" style={{ width: '80%' }} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} />
               </div>
             </div>
           </div>
-        </div>
-</Link>
-
+        </Link>
       </div>
-
 
       <div className="col-xl-3 col-lg-6 col-12">
-<Link href="/branchs">
-<a href="#">
+        <Link href="/branchs">
+          <div class="card bg-gradient-directional-warning">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="align-self-center">
+                    <i class="icon-pointer text-white font-large-2 float-left"></i>
+                  </div>
+                  <div class="media-body text-white text-right">
+                    <h3 class="text-white">
+                      <NumberFormat
+                        value={branch}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={""}
+                      />
+                    </h3>
 
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="media-body text-left">
-                  <h3 className="danger">{store.infomation === null ? <i className="la la-spinner spinner"></i> : <NumberFormat value={store.infomation.branchs.total} displayType={'text'} thousandSeparator={true} prefix={''} />}</h3>
-                  <h6>หน่วยบริการ</h6>
+                    <span>หน่วยบริการ</span>
+                  </div>
                 </div>
-                <div>
-                  <i className="icon-heart danger font-large-2 float-right" />
-                </div>
-              </div>
-              <div className="progress progress-sm mt-1 mb-0 box-shadow-2">
-                <div className="progress-bar bg-gradient-x-danger" role="progressbar" style={{ width: '85%' }} aria-valuenow={85} aria-valuemin={0} aria-valuemax={100} />
               </div>
             </div>
           </div>
-        </div>
-</a>
-</Link>
-
+        </Link>
       </div>
-
 
       <div className="col-xl-3 col-lg-6 col-12">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="media-body text-left">
-                  <h3 className="warning">0</h3>
-                  <h6>บัญชี</h6>
+        <div class="card bg-gradient-directional-danger">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="icon-pie-chart text-white font-large-2 float-left"></i>
                 </div>
-                <div>
-                  <i className="icon-pie-chart warning font-large-2 float-right" />
+                <div class="media-body text-white text-right">
+                  <h3 class="text-white">0</h3>
+                  <span>บัญชี</span>
                 </div>
-              </div>
-              <div className="progress progress-sm mt-1 mb-0 box-shadow-2">
-                <div className="progress-bar bg-gradient-x-warning" role="progressbar" style={{ width: '65%' }} aria-valuenow={65} aria-valuemin={0} aria-valuemax={100} />
               </div>
             </div>
           </div>
         </div>
       </div>
-
-
-
     </div>
-  )
+  );
 }

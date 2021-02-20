@@ -1,176 +1,147 @@
 import React, { useState, useEffect } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import NumberFormat from 'react-number-format';
+import NumberFormat from "react-number-format";
 
-import Axios from '../axios.config'
+import Axios from "../axios.config";
 function ChartSmmery(props) {
   const store = useSelector((state) => state.infomation);
-  const [provinceSummery, setprovinceSummery] = useState([]);
-  const [barchartDataset, setBarchartDataset] = useState([]);
-  const [barchartLabel, setBarchartLabel] = useState([]);
+  const [dataset, setDataset] = useState([]);
+  const [typeGroup, setTypeGroup] = useState([]);
 
   useEffect(async () => {
-    await getProvincegroup();
-  },[]);
+    await getDataset();
+  }, []);
 
-
-  const getProvincegroup = async () => {
-    const {data} = await  Axios.get('datacenter');
-    setprovinceSummery(data.provincegroup)
-  }
-
+  const getDataset = async () => {
+    const { data } = await Axios.get("datacenter/assets/datasets");
+    setDataset(data);
+    setTypeGroup(data);
+  };
 
   const data = (canvas) => {
     const ctx = canvas.getContext("2d");
-    const gradient = ctx.createLinearGradient(0, 0, 100, 0);
 
     const purple_orange_gradient = ctx.createLinearGradient(0, 0, 0, 600);
     purple_orange_gradient.addColorStop(0, "#0c84d1");
     purple_orange_gradient.addColorStop(1, "#4eb4f5");
-    
+
     const purple_orange_gradient1 = ctx.createLinearGradient(0, 0, 0, 600);
     purple_orange_gradient1.addColorStop(1, "#ff1635");
     purple_orange_gradient1.addColorStop(0, "#ff7c8d");
 
-    // const purple_orange_gradient0 = ctx.createLinearGradient(0, 0, 0, 600);
-    // purple_orange_gradient0.addColorStop(0, "orange");
-    // purple_orange_gradient0.addColorStop(1, "purple");
-
-
-    // const purple_orange_gradient2 = ctx.createLinearGradient(0, 0, 0, 600);
-    // purple_orange_gradient2.addColorStop(0, "mediumorchid");
-    // purple_orange_gradient2.addColorStop(1, "blueviolet");
-
-    // const purple_orange_gradient3 = ctx.createLinearGradient(0, 0, 0, 600);
-    // purple_orange_gradient3.addColorStop(0, "chocolate");
-    // purple_orange_gradient3.addColorStop(1, "blueviolet");
-
-
     let datasets = [];
-       datasets.push({
-        label:'ครุภัณฑ์',
+    datasets.push(
+      {
+        label: "ครุภัณฑ์",
         backgroundColor: purple_orange_gradient,
         hoverBackgroundColor: purple_orange_gradient,
-        data: [...new Set(provinceSummery.map((n) => n.person))]
+        data: [...new Set(dataset.map((n) => n.person))],
       },
       {
-        label:'สิ่งก่อสร้าง',
+        label: "สิ่งก่อสร้าง",
         backgroundColor: purple_orange_gradient1,
-            hoverBackgroundColor: purple_orange_gradient1,
-        data: [...new Set(provinceSummery.map((n) => n.assetbuildings))]
-      });
- 
-    return{
-      labels:[...new Set(provinceSummery.map((n) => n.name))],
-      fill:'start',
-      datasets
-    }
+        hoverBackgroundColor: purple_orange_gradient1,
+        data: [...new Set(dataset.map((n) => n.assetbuildings))],
+      }
+    );
 
-// return barchartDataset;
-
-  }
-
-
-
+    return {
+      labels: [...new Set(dataset.map((n) => n.name))],
+      fill: "start",
+      datasets,
+    };
+  };
 
   return (
     <div>
-      <div className="row match-height">
-        <div className="col-xl-8 col-12" id="ecommerceChartView">
-          <div className="card card-shadow">
-
-            <Bar
-              data={data}
-              // width={400}
-              height={180}
-              options={{
-                responsive: true,
-                title: { text: "ข้อมูลสิ่งที่มีอยู่", display: true },
-              }}
-            />
-          </div>
-        </div>
-        <div className="col-xl-4 col-lg-12">
+      <div className="row">
+        <div className="col-12">
           <div className="card">
-            <div className="card-header">
-              <h4 className="card-title">ข้อมูลสิ่งที่มีอยู่</h4>
-              <a className="heading-elements-toggle">
-                <i className="la la-ellipsis-v font-medium-3" />
-              </a>
-              <div className="heading-elements">
-                <ul className="list-inline mb-0">
-                  <li>
-                    <a data-action="reload" onClick={()=>{
-                      console.log('click')
-                      getProvincegroup()
-                    }}>
-                      <i className="ft-rotate-cw" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="card-content">
-              <div id="new-orders" className="media-list position-relative ps">
-                <div className="table-responsive">
-                  
-                <table
-                    id="new-orders-table"
-                    className="table table-hover table-xl mb-0 p-0"
-                  >
-                    <thead>
-                      <tr>
-                        <th className="border-top-0">จังหวัด</th>
-                        <th className="border-top-0">ครุภัณฑ์</th>
-                        <th className="border-top-0">สิ่งก่อสร้าง</th>
-                        <th className="border-top-0">วันที่ปรับปรุง</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        {store ? store.provincegroup.map((item, i) => {
+            <div className="card-content collapse show">
+              <div className="row">
+                <div className="col-xl-8 col-lg-12">
+                  <div className="card-body">
+                    <div className="rickshaw-wrap">
+                      <Bar
+                        data={data}
+                        // width={400}
+                        height={150}
+                        options={{
+                          responsive: true,
+                          title: { text: "ข้อมูลสิ่งที่มีอยู่", display: true },
+                        }}
+                      />
+                      <div className="rickshaw-legend-wrap">
+                        <div id="area-chart-legend" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-12">
+                  <div className="table-responsive mt-2">
+                    <table
+                      id="new-orders-table"
+                      className="table table-xs table-hover mb-0 p-0"
+                    >
+                      <thead>
+                        <tr>
+                          <th className="border-top-0">จังหวัด</th>
+                          <th className="border-top-0">ครุภัณฑ์</th>
+                          <th className="border-top-0">สิ่งก่อสร้าง</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {typeGroup.map((item, i) => {
                           return (
-                            <tr key={i}>
-                              <td className="text-truncate" style={{ width: 130 }}>
-                                <a onClick={ async () =>{
-                                  const {data} = await  Axios.get('datacenter/groupbyhospcode/',{
-                                    params: {
-                                      chwpart:item.chwpart
-                                    }
-                                  });
-                                  setprovinceSummery(data)
-                                  console.log(data)
-                                }}>
+                            <tr key={i} className="pull-up">
+                              <td
+                                className="text-truncate"
+                                style={{ width: 130 }}
+                              >
+                                <a
+                                  onClick={async () => {
+                                    const { data } = await Axios.get(
+                                      "datacenter/assets/groupbyhospcode/",
+                                      {
+                                        params: {
+                                          chwpart: item.chwpart,
+                                        },
+                                      }
+                                    );
+                                    setDataset(data);
+                                    console.log(data);
+                                  }}
+                                >
                                   {item.name}
-                                  </a>
+                                </a>
                               </td>
                               <td className="text-truncate p-1">
-                                <NumberFormat value={item.person} displayType={'text'} thousandSeparator={true} prefix={''} />
-                                </td>
-                              <td className="text-truncate"><NumberFormat value={item.assetbuildings} displayType={'text'} thousandSeparator={true} prefix={''} /></td>
+                                <h6 className="text-bold-600">
+                                  <NumberFormat
+                                    value={item.person}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={""}
+                                  />
+                                </h6>
+                              </td>
                               <td className="text-truncate">
-                                {item.lastupdate}
+                                <h6 className="text-bold-600">
+                                  <NumberFormat
+                                    value={item.assetbuildings}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={""}
+                                  />
+                                </h6>
                               </td>
                             </tr>
                           );
-                        }) : []}
-                          </tbody>
-                        </table>
-                  
-                </div>
-                <div className="ps__rail-x" style={{ left: 0, bottom: 0 }}>
-                  <div
-                    className="ps__thumb-x"
-                    tabIndex={0}
-                    style={{ left: 0, width: 0 }}
-                  />
-                </div>
-                <div className="ps__rail-y" style={{ top: 0, right: 0 }}>
-                  <div
-                    className="ps__thumb-y"
-                    tabIndex={0}
-                    style={{ top: 0, height: 0 }}
-                  />
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,30 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Theme from "../../themes";
 import NumberFormat from "react-number-format";
 import { Bar, Pie } from "react-chartjs-2";
 import Sexpie from "../../components/sexPie";
-import { useQuery, QueryClient, QueryClientProvider } from "react-query";
+import Typepie from "../../components/typePie";
 import Axios from "../../axios.config";
-const queryClient = new QueryClient();
 
 export default function Index() {
-  return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <Person />
-      </QueryClientProvider>
-    </>
-  );
-}
+  const [getDatasets, setDataset] = useState([]);
+  const [typeSummary, setTypeSummary] = useState(null);
 
-function Person() {
-  const { status, data, error, isFetching } = useQuery("todos", async () => {
-    const { data } = await Axios.get("datacenter/persons");
-    return data;
-  });
+  useEffect(async () => {
+    await getData();
+  }, []);
 
-  if (status === "loading") return <h1>Loading...</h1>;
-  if (status === "error") return <span>Error: {error.message}</span>;
+  const getData = async () => {
+    const datasets = await Axios.get("datacenter/persons/datasets");
+    const dataTypeSummary = await Axios.get("datacenter/persons/type-summary");
+    setDataset(datasets.data.items);
+    setTypeSummary(dataTypeSummary.data);
+  };
 
   const dataChart = (canvas) => {
     const ctx = canvas.getContext("2d");
@@ -76,66 +71,48 @@ function Person() {
         label: "ข้าราชการ",
         backgroundColor: purple_orange_gradient,
         hoverBackgroundColor: purple_orange_gradient,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type0))],
+        data: [...new Set(getDatasets.map((n) => n.person_type_a))],
       },
       {
         label: "จ้างเหมาบริการ",
         backgroundColor: purple_orange_gradient1,
         hoverBackgroundColor: purple_orange_gradient1,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type1))],
+        data: [...new Set(getDatasets.map((n) => n.person_type_b))],
       },
       {
         label: "จ้างเหมาบริการบุคคล",
         backgroundColor: purple_orange_gradient2,
         hoverBackgroundColor: purple_orange_gradient2,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type2))],
+        data: [...new Set(getDatasets.map((n) => n.person_type_c))],
       },
       {
         label: "พนักงานกระทรวงสาธารณสุข",
         backgroundColor: purple_orange_gradient3,
         hoverBackgroundColor: purple_orange_gradient3,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type3))],
+        data: [...new Set(getDatasets.map((n) => n.person_type_b))],
       },
       {
         label: "พนักงานราชการ",
         backgroundColor: purple_orange_gradient4,
         hoverBackgroundColor: purple_orange_gradient4,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type4))],
+        data: [...new Set(getDatasets.map((n) => n.person_type_e))],
       },
       {
         label: "ลูกจ้างชั่วคราว",
         backgroundColor: purple_orange_gradient5,
         hoverBackgroundColor: purple_orange_gradient5,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type5))],
+        data: [...new Set(getDatasets.map((n) => n.person_type_f))],
       },
       {
-        label: "ลูกจ้างประจำ",
+        label: "ลูกจ้างอื่นๆ",
         backgroundColor: purple_orange_gradient6,
         hoverBackgroundColor: purple_orange_gradient6,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type6))],
-      },
-      {
-        label: "ลูกจ้างรายคาบ",
-        backgroundColor: purple_orange_gradient7,
-        hoverBackgroundColor: purple_orange_gradient7,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type7))],
-      },
-      {
-        label: "ลูกจ้างรายวัน",
-        backgroundColor: purple_orange_gradient8,
-        hoverBackgroundColor: purple_orange_gradient8,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type8))],
-      },
-      {
-        label: "ลูกจ้างเหมาบริการ",
-        backgroundColor: purple_orange_gradient9,
-        hoverBackgroundColor: purple_orange_gradient9,
-        data: [...new Set(data.datasets.items.map((n) => n.person_type9))],
+        data: [...new Set(getDatasets.map((n) => n.person_type_other))],
       }
     );
 
     return {
-      labels: [...new Set(data.datasets.items.map((n) => n.name))],
+      labels: [...new Set(getDatasets.map((n) => n.name))],
       fill: "start",
       datasets,
     };
@@ -144,177 +121,273 @@ function Person() {
   return (
     <>
       <div className="row">
-        <div className="col-xl-4 col-md-6 col-12">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="align-self-center">
-                  <i className="icon-pointer danger font-large-2 float-left" />
-                </div>
-                <div className="media-body text-right">
-                  <h3>
-                  <NumberFormat
-                          value={data.totaltypesummery.total}
+        <div className="col-xl-3 col-md-6 col-12">
+          <div className="card pull-up">
+            <div className="card-content">
+              <div className="card-body">
+                <div className="media d-flex">
+                  <div className="align-self-center">
+                    <i className="icon-user primary font-large-2 float-left" />
+                  </div>
+                  <div className="media-body text-right">
+                    <h3>
+                      {typeSummary !== null ? (
+                        <NumberFormat
+                          value={typeSummary.type_all.total}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
-                  </h3>
-                  <span>จำนวนบุคลากรทั้งหมด</span>
+                      ) : (
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                      )}
+                      {typeSummary !== null ? " คน" : ""}
+                    </h3>
+                    <span>
+                      {typeSummary !== null ? typeSummary.type_all.label : null}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
 
-        <div className="col-xl-4 col-md-6 col-12">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="align-self-center">
-                  <i className="icon-pointer danger font-large-2 float-left" />
-                </div>
-                <div className="media-body text-right">
-                  <h3>
-                    <NumberFormat
-                      value={data.totaltypesummery.items[0].total}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={""}
-                    />
-                  </h3>
-                  <span>{data.totaltypesummery.items[0].label}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-
-        <div className="col-xl-4 col-md-6 col-12">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="align-self-center">
-                  <i className="icon-pointer danger font-large-2 float-left" />
-                </div>
-                <div className="media-body text-right">
-                  <h3>
-                    <NumberFormat
-                      value={data.totaltypesummery.items[3].total}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={""}
-                    />
-                  </h3>
-                  <span>{data.totaltypesummery.items[3].label}</span>
+        <div className="col-xl-3 col-md-6 col-12">
+          <div className="card pull-up">
+            <div className="card-content">
+              <div className="card-body">
+                <div className="media d-flex">
+                  <div className="align-self-center">
+                    <i className="icon-user primary font-large-2 float-left" />
+                  </div>
+                  <div className="media-body text-right">
+                    <h3>
+                      {typeSummary !== null ? (
+                        <NumberFormat
+                          value={typeSummary.type_a.total}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={""}
+                        />
+                      ) : (
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                      )}
+                      {typeSummary !== null ? " คน" : ""}
+                    </h3>
+                    <span>
+                      {typeSummary !== null ? typeSummary.type_a.label : null}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div className="col-xl-3 col-md-6 col-12">
+          <div className="card pull-up">
+            <div className="card-content">
+              <div className="card-body">
+                <div className="media d-flex">
+                  <div className="align-self-center">
+                    <i className="icon-user primary font-large-2 float-left" />
+                  </div>
+                  <div className="media-body text-right">
+                    <h3>
+                      {typeSummary !== null ? (
+                        <NumberFormat
+                          value={typeSummary.type_b.total}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={""}
+                        />
+                      ) : (
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                      )}
+                      {typeSummary !== null ? " คน" : ""}
+                    </h3>
+                    <span>
+                      {typeSummary !== null ? typeSummary.type_b.label : null}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-       
+        <div className="col-xl-3 col-md-6 col-12">
+          <div className="card pull-up">
+            <div className="card-content">
+              <div className="card-body">
+                <div className="media d-flex">
+                  <div className="align-self-center">
+                    <i className="icon-user primary font-large-2 float-left" />
+                  </div>
+                  <div className="media-body text-right">
+                    <h3>
+                      {typeSummary !== null ? (
+                        <NumberFormat
+                          value={typeSummary.type_c.total}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={""}
+                        />
+                      ) : (
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                      )}
+                      {typeSummary !== null ? " คน" : ""}
+                    </h3>
+                    <span>
+                      {typeSummary !== null ? typeSummary.type_c.label : null}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-xl-3 col-md-6 col-12">
+          <div className="card pull-up">
+            <div className="card-content">
+              <div className="card-body">
+                <div className="media d-flex">
+                  <div className="align-self-center">
+                    <i className="icon-user primary font-large-2 float-left" />
+                  </div>
+                  <div className="media-body text-right">
+                    <h3>
+                      {typeSummary !== null ? (
+                        <NumberFormat
+                          value={typeSummary.type_d.total}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={""}
+                        />
+                      ) : (
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                      )}
+                      {typeSummary !== null ? " คน" : ""}
+                    </h3>
+                    <span>
+                      {typeSummary !== null ? typeSummary.type_d.label : null}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        
+        <div className="col-xl-3 col-md-6 col-12">
+          <div className="card pull-up">
+            <div className="card-content">
+              <div className="card-body">
+                <div className="media d-flex">
+                  <div className="align-self-center">
+                    <i className="icon-user primary font-large-2 float-left" />
+                  </div>
+                  <div className="media-body text-right">
+                    <h3>
+                      {typeSummary !== null ? (
+                        <NumberFormat
+                          value={typeSummary.type_e.total}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={""}
+                        />
+                      ) : (
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                      )}
+                      {typeSummary !== null ? " คน" : ""}
+                    </h3>
+                    <span>
+                      {typeSummary !== null ? typeSummary.type_e.label : null}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-xl-3 col-md-6 col-12">
+          <div className="card pull-up">
+            <div className="card-content">
+              <div className="card-body">
+                <div className="media d-flex">
+                  <div className="align-self-center">
+                    <i className="icon-user primary font-large-2 float-left" />
+                  </div>
+                  <div className="media-body text-right">
+                    <h3>
+                      {typeSummary !== null ? (
+                        <NumberFormat
+                          value={typeSummary.type_f.total}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={""}
+                        />
+                      ) : (
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                      )}
+                      {typeSummary !== null ? " คน" : ""}
+                    </h3>
+                    <span>
+                      {typeSummary !== null ? typeSummary.type_f.label : null}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-xl-3 col-md-6 col-12">
+          <div className="card pull-up">
+            <div className="card-content">
+              <div className="card-body">
+                <div className="media d-flex">
+                  <div className="align-self-center">
+                    <i className="icon-user primary font-large-2 float-left" />
+                  </div>
+                  <div className="media-body text-right">
+                    <h3>
+                      {typeSummary !== null ? (
+                        <NumberFormat
+                          value={typeSummary.type_other.total}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={""}
+                        />
+                      ) : (
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                      )}
+                      {typeSummary !== null ? " คน" : ""}
+                    </h3>
+                    <span>
+                      {typeSummary !== null
+                        ? typeSummary.type_other.label
+                        : null}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 
       <div className="row">
-      <div className="col-xl-4 col-md-6 col-12">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="align-self-center">
-                  <i className="icon-pointer danger font-large-2 float-left" />
-                </div>
-                <div className="media-body text-right">
-                  <h3>
-                    <NumberFormat
-                      value={data.totaltypesummery.items[2].total}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={""}
-                    />
-                  </h3>
-                  <span>{data.totaltypesummery.items[2].label}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div className="col-xl-4 col-md-6 col-12">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="align-self-center">
-                  <i className="icon-pointer danger font-large-2 float-left" />
-                </div>
-                <div className="media-body text-right">
-                  <h3>
-                    <NumberFormat
-                      value={data.totaltypesummery.items[1].total}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={""}
-                    />
-                  </h3>
-                  <span>{data.totaltypesummery.items[1].label}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-
-        <div className="col-xl-4 col-md-6 col-12">
-        <div className="card pull-up">
-          <div className="card-content">
-            <div className="card-body">
-              <div className="media d-flex">
-                <div className="align-self-center">
-                  <i className="icon-pointer danger font-large-2 float-left" />
-                </div>
-                <div className="media-body text-right">
-                  <h3>
-                    <NumberFormat
-                      value={data.totaltypesummery.items[4].total}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={""}
-                    />
-                  </h3>
-                  <span>{data.totaltypesummery.items[5].label}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-
-        
-</div>
-
-
-      {/* <Summery data={data} /> */}
-
-      <div className="row">
-        <div className="col-9">
-        <div className="card pull-up">
-            <div className="card-header">
+        <div className="col-12">
+          <div className="card pull-up">
+          <div className="card-header">
+              <h4 className="card-title">ภาพรวมบุคลากรทั้งหมดของเขตสุขภาพที่ 1</h4>
               <a className="heading-elements-toggle">
-                <i className="la la-ellipsis-h font-medium-3" />
+                <i className="la la-ellipsis-v font-medium-3" />
               </a>
-              <div className="heading-elements">
-              </div>
             </div>
             <div className="card-content collapse show">
               <div className="row">
@@ -327,11 +400,11 @@ function Person() {
                         options={{
                           responsive: true,
                           legend: {
-                            position: "right",
+                            // position: "right",
                           },
                           title: {
                             text: "ภาพรวมบุคลากรทั้งหมดของเขตสุขภาพที่ 1",
-                            display: true,
+                            display: false,
                           },
                         }}
                       />
@@ -344,103 +417,45 @@ function Person() {
               </div>
             </div>
           </div>
-
-        </div>
-        <div className="col-3">
-                      <Sexpie />
-
         </div>
       </div>
 
-      <ListSummary data={data} />
-    </>
-  );
-}
-
-function Summery({ data }) {
-  return (
-    <>
       <div className="row">
-        <div className="col-xl-3 col-lg-6 col-12">
-          <div className="card pull-up mb-1">
-            <div className="card-content">
-              <div className="card-body">
-                <div className="media d-flex">
-                  <div className="media-body text-left">
-                    <h3 className="success">
-                      {
-                        <NumberFormat
-                          value={data.totaltypesummery.total}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
-                      }
-                    </h3>
-                    <h6>จำนวนบุคลากรทั้งหมด</h6>
-                  </div>
-                  <div>
-                    <i className="icon-user-follow success font-large-2 float-right" />
-                  </div>
-                </div>
-                <div className="progress progress-sm mt-0 mb-0 box-shadow-2">
-                  <div
-                    className="progress-bar bg-gradient-x-success"
-                    role="progressbar"
-                    style={{ width: "75%" }}
-                    aria-valuenow={75}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  />
-                </div>
-              </div>
+        <div className="col-sm-6 col-lg-6 col-md-6">
+          <div className="card pull-up">
+            <div className="card-header">
+              <h4 className="card-title">ร้อยละบุคคลแยกตามเพศ</h4>
+              <a className="heading-elements-toggle">
+                <i className="la la-ellipsis-v font-medium-3" />
+              </a>
+            </div>
+            <div className="card-content collapse show p-3">
+              <Sexpie />
             </div>
           </div>
         </div>
-        {data.totaltypesummery.items.map((item, i) => {
-          return (
-            <div className="col-xl-3 col-lg-6 col-12">
-              <div className="card pull-up mb-1">
-                <div className="card-content">
-                  <div className="card-body">
-                    <div className="media d-flex">
-                      <div className="media-body text-left">
-                        <h3 className="success">
-                          {
-                            <NumberFormat
-                              value={item.total}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                              prefix={""}
-                            />
-                          }
-                        </h3>
-                        <h6>{item.label}</h6>
-                      </div>
-                      <div>
-                        <i className="icon-user-follow success font-large-2 float-right" />
-                      </div>
-                    </div>
-                    <div className="progress progress-sm mt-1 mb-0 box-shadow-2">
-                      <div
-                        className="progress-bar bg-gradient-x-success"
-                        role="progressbar"
-                        style={{ width: "75%" }}
-                        aria-valuenow={75}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+        <div className="col-sm-6 col-lg-6 col-md-">
+          <div className="card pull-up">
+            <div className="card-header">
+              <h4 className="card-title">ร้อยละบุคคลแยกตามประเภท</h4>
+              <a className="heading-elements-toggle">
+                <i className="la la-ellipsis-v font-medium-3" />
+              </a>
             </div>
-          );
-        })}
+            <div className="card-content collapse show p-3">
+              <Typepie />
+            </div>
+          </div>
+        </div>
       </div>
+
+      <ListSummary data={getDatasets} />
+
     </>
   );
 }
+
 function ListSummary({ data }) {
   return (
     <>
@@ -465,89 +480,108 @@ function ListSummary({ data }) {
                   <th className="border-top-0">ลูกจ้างประจำ</th>
                   <th className="border-top-0">พนักงานราชการ</th>
                   <th className="border-top-0">พนักงานกระทรวงสาธารณสุข</th>
-                  <th className="border-top-0">ลูกจ้างรายวัน</th>
-                  <th className="border-top-0">รวมทั้งหมด</th>
+                  <th className="border-top-0">ลูกจ้างชั่วคราว</th>
+                  <th className="border-top-0">ลูกจ้างอื่ยๆ</th>
                   <th className="border-top-0">เพศชาย</th>
                   <th className="border-top-0">เพศหญิง</th>
                 </tr>
               </thead>
               <tbody>
-                {data.datasets.items.map((item, i) => {
+                {data.map((item, i) => {
                   return (
-                    <tr>
+                    <tr className="pull-up">
                       <td className="text-truncate">
                         <i className="la la-dot-circle-o success font-medium-1 mr-1" />{" "}
                         {item.name}
                       </td>
                       <td className="text-truncate">
-                      {/* ข้าราชการ */}
+                        {/* ข้าราชการ */}
+                        <h6 className="text-bold-600">
                         <NumberFormat
-                          value={item.person_type0}
+                          value={item.person_type_a}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
+                        </h6>
                       </td>
                       <td className="text-truncate">
-                      {/* ลูกจ้างประจำ */}
+                        {/* ลูกจ้างประจำ */}
+                        <h6 className="text-bold-600">
                         <NumberFormat
-                          value={item.person_type6}
+                          value={item.person_type_b}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
+                        </h6>
                       </td>
                       <td className="text-truncate">
-                      {/* พนักงานราชการ */}
+                        {/* พนักงานราชการ */}
+                        <h6 className="text-bold-600">
                         <NumberFormat
-                          value={item.person_type4}
+                          value={item.person_type_c}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
+                        </h6>
                       </td>
                       <td className="text-truncate">
-                      {/* พนักงานกระทรวงสาธารณสุข */}
+                        {/* พนักงานกระทรวงสาธารณสุข */}
+                        <h6 className="text-bold-600">
                         <NumberFormat
-                          value={item.person_type3}
+                          value={item.person_type_d}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
+                        </h6>
                       </td>
                       <td className="text-truncate">
-                      {/* ลูกจ้างรายวัน */}
+                        {/* ลูกจ้างรายวัน */}
+                        <h6 className="text-bold-600">
                         <NumberFormat
-                          value={item.person_type8}
+                          value={item.person_type_e}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
+                        </h6>
                       </td>
                       <td className="text-truncate">
-                      {/* ทั้งหมด */}
+                        {/* ทั้งหมด */}
+                        <h6 className="text-bold-600">
                         <NumberFormat
-                          value={item.person}
+                          value={item.person_type_other}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
+                        </h6>
+
                       </td>
                       <td className="text-truncate">
+                      <h6 className="text-bold-600">
                         <NumberFormat
                           value={item.man}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
+                        </h6>
+
                       </td>
                       <td className="text-truncate">
+                      <h6 className="text-bold-600">
                         <NumberFormat
                           value={item.woman}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
                         />
+                        </h6>
+
                       </td>
                     </tr>
                   );
