@@ -12,9 +12,9 @@ export default function Header() {
 
   return (
     <nav className="header-navbar navbar-expand-lg navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
-    <div className="navbar-wrapper">
-      <div className="navbar-header">
-        <ul className="nav navbar-nav flex-row">
+      <div className="navbar-wrapper">
+        <div className="navbar-header expanded">
+          <ul className="nav navbar-nav flex-row">
             <li className="nav-item mobile-menu d-lg-none mr-auto">
               <a
                 className="nav-link nav-menu-main menu-toggle hidden-xs is-active"

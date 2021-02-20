@@ -35,7 +35,7 @@ export default function AdminLte3({ children }) {
   //     }
   //     // จบดารตรวจสอบ User login
   //   })();
-  await getData()
+  // await getData()
   }, []);
 
 

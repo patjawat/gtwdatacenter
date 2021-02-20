@@ -36,14 +36,7 @@ class MyDocument extends Document {
 
 </div>
 
-
-
-        <body
-          class="vertical-layout vertical-menu-modern 2-columns   fixed-navbar"
-          data-open="click"
-          data-menu="vertical-menu-modern"
-          data-col="2-columns"
-        >
+<body class="vertical-layout vertical-menu-modern vertical-collapsed-menu 2-columns   menu-collapsed fixed-navbar" data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           <div className="pace  pace-inactive">
             <div
               className="pace-progress"
