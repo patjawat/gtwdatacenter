@@ -8,6 +8,7 @@ function ChartSmmery(props) {
   const store = useSelector((state) => state.infomation);
   const [dataset, setDataset] = useState([]);
   const [typeGroup, setTypeGroup] = useState([]);
+  const [labelChart, setLabelChart] = useState('ข้อมูลสิ่งที่มีอยู่');
 
   useEffect(async () => {
     await getDataset();
@@ -25,6 +26,7 @@ function ChartSmmery(props) {
     const purple_orange_gradient = ctx.createLinearGradient(0, 0, 0, 600);
     purple_orange_gradient.addColorStop(0, "#0c84d1");
     purple_orange_gradient.addColorStop(1, "#4eb4f5");
+    
 
     const purple_orange_gradient1 = ctx.createLinearGradient(0, 0, 0, 600);
     purple_orange_gradient1.addColorStop(1, "#ff1635");
@@ -36,7 +38,7 @@ function ChartSmmery(props) {
         label: "ครุภัณฑ์",
         backgroundColor: purple_orange_gradient,
         hoverBackgroundColor: purple_orange_gradient,
-        data: [...new Set(dataset.map((n) => n.person))],
+        data: [...new Set(dataset.map((n) => n.asset))],
       },
       {
         label: "สิ่งก่อสร้าง",
@@ -69,7 +71,7 @@ function ChartSmmery(props) {
                         height={150}
                         options={{
                           responsive: true,
-                          title: { text: "ข้อมูลสิ่งที่มีอยู่", display: true },
+                          title: { text: labelChart, display: true },
                         }}
                       />
                       <div className="rickshaw-legend-wrap">
@@ -110,6 +112,7 @@ function ChartSmmery(props) {
                                       }
                                     );
                                     setDataset(data);
+                                    setLabelChart('ข้อมูลสิ่งที่มีอยู่จังหวัด'+item.name);
                                     console.log(data);
                                   }}
                                 >
@@ -119,7 +122,7 @@ function ChartSmmery(props) {
                               <td className="text-truncate p-1">
                                 <h6 className="text-bold-600">
                                   <NumberFormat
-                                    value={item.person}
+                                    value={item.asset}
                                     displayType={"text"}
                                     thousandSeparator={true}
                                     prefix={""}

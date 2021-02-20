@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100&family=Open+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100&family=Open+Sans:wght@300&display=swap");
 html,
 body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Kanit', sans-serif !important;
+  padding: 0;
+  margin: 0;
+  font-family: "Kanit", sans-serif !important;
 }
 
 h4,
@@ -15,9 +15,18 @@ h6,
 .h4,
 .h5,
 .h6 {
-    margin-bottom: 0.5rem;
-    /* font-family: "Quicksand", Georgia, "Times New Roman", Times, serif; */
-    font-weight: 400;
-    line-height: 1.2;
-    color: #464855;
+  margin-bottom: 0.5rem;
+  /* font-family: "Quicksand", Georgia, "Times New Roman", Times, serif; */
+  font-weight: 400;
+  line-height: 1.2;
+  color: #464855;
 }
+.bg-gradient-directional-custom1 {
+  background-image: linear-gradient(45deg, #3813C2, #FF6FD8);
+  background-repeat: repeat-x;
+}
+.bg-gradient-directional-custom2 {
+  background-image: linear-gradient(45deg,#1D6FA3, #65FDF0);
+  background-repeat: repeat-x;
+}
+

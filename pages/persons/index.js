@@ -43,12 +43,12 @@ export default function Index() {
     purple_orange_gradient3.addColorStop(0, "#ffb07c");
 
     const purple_orange_gradient4 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient4.addColorStop(1, "red");
-    purple_orange_gradient4.addColorStop(0, "blue");
+    purple_orange_gradient4.addColorStop(1, "#3813C2");
+    purple_orange_gradient4.addColorStop(0, "#FF6FD8");
 
     const purple_orange_gradient5 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient5.addColorStop(1, "blue");
-    purple_orange_gradient5.addColorStop(0, "red");
+    purple_orange_gradient5.addColorStop(1, "#65FDF0");
+    purple_orange_gradient5.addColorStop(0, "#1D6FA3");
 
     const purple_orange_gradient6 = ctx.createLinearGradient(0, 0, 0, 600);
     purple_orange_gradient6.addColorStop(1, "#FFE985");
@@ -93,13 +93,13 @@ export default function Index() {
         data: [...new Set(getDatasets.map((n) => n.person_type_b))],
       },
       {
-        label: "พนักงานราชการ",
+        label: "ลูกจ้างชั่วคราว",
         backgroundColor: purple_orange_gradient4,
         hoverBackgroundColor: purple_orange_gradient4,
         data: [...new Set(getDatasets.map((n) => n.person_type_e))],
       },
       {
-        label: "ลูกจ้างชั่วคราว",
+        label: "ลูกจ้างรายวัน",
         backgroundColor: purple_orange_gradient5,
         hoverBackgroundColor: purple_orange_gradient5,
         data: [...new Set(getDatasets.map((n) => n.person_type_f))],
@@ -155,7 +155,7 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card bg-gradient-directional-primary bg-darken-4">
+          <div className="card pull-up bg-gradient-directional-primary bg-darken-4">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
@@ -187,7 +187,7 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-        <div className="card bg-gradient-directional-info">
+        <div className="card pull-up bg-gradient-directional-info">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
@@ -219,7 +219,7 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-        <div className="card bg-gradient-directional-success">
+        <div className="card pull-up bg-gradient-directional-success">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
@@ -250,7 +250,7 @@ export default function Index() {
           </div>
         </div>
         <div className="col-xl-3 col-md-6 col-12">
-        <div className="card bg-gradient-directional-warning">
+        <div className="card pull-up bg-gradient-directional-warning">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
@@ -282,7 +282,7 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-        <div className="card bg-gradient-directional-info">
+        <div className="card pull-up bg-gradient-directional-custom1">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
@@ -314,7 +314,7 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-        <div className="card bg-gradient-directional-info">
+        <div className="card pull-up bg-gradient-directional-custom2">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
@@ -347,7 +347,7 @@ export default function Index() {
 
         <div className="col-xl-3 col-md-6 col-12">
 
-        <div className="card bg-gradient-directional-danger">
+        <div className="card pull-up bg-gradient-directional-danger">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
@@ -401,6 +401,11 @@ export default function Index() {
                         data={dataChart}
                         height={100}
                         options={{
+                          plugins: {
+                            labels: {
+                              render: 'value',
+                            }
+                          },
                           responsive: true,
                           legend: {
                             // position: "right",
@@ -432,7 +437,7 @@ export default function Index() {
                 <i className="la la-ellipsis-v font-medium-3" />
               </a>
             </div>
-            <div className="card-content collapse show p-3">
+            <div className="card-content collapse show">
               <Sexpie />
             </div>
           </div>
@@ -479,11 +484,11 @@ function ListSummary({ data }) {
                 <tr>
                   <th className="border-top-0">จังหวัด</th>
                   <th className="border-top-0">ข้าราชการ</th>
-                  <th className="border-top-0">ลูกจ้างประจำ</th>
                   <th className="border-top-0">พนักงานราชการ</th>
                   <th className="border-top-0">พนักงานกระทรวงสาธารณสุข</th>
+                  <th className="border-top-0">ลูกจ้างประจำ</th>
                   <th className="border-top-0">ลูกจ้างชั่วคราว</th>
-                  <th className="border-top-0">ลูกจ้างอื่ยๆ</th>
+                  <th className="border-top-0">ลูกจ้างอื่นๆ</th>
                   <th className="border-top-0">เพศชาย</th>
                   <th className="border-top-0">เพศหญิง</th>
                 </tr>
@@ -508,17 +513,6 @@ function ListSummary({ data }) {
                         </h6>
                       </td>
                       <td className="text-truncate">
-                        {/* ลูกจ้างประจำ */}
-                        <h6 className="text-bold-600">
-                          <NumberFormat
-                            value={item.person_type_b}
-                            displayType={"text"}
-                            thousandSeparator={true}
-                            prefix={""}
-                          />
-                        </h6>
-                      </td>
-                      <td className="text-truncate">
                         {/* พนักงานราชการ */}
                         <h6 className="text-bold-600">
                           <NumberFormat
@@ -529,6 +523,7 @@ function ListSummary({ data }) {
                           />
                         </h6>
                       </td>
+
                       <td className="text-truncate">
                         {/* พนักงานกระทรวงสาธารณสุข */}
                         <h6 className="text-bold-600">
@@ -540,6 +535,20 @@ function ListSummary({ data }) {
                           />
                         </h6>
                       </td>
+
+                      <td className="text-truncate">
+                        {/* ลูกจ้างประจำ */}
+                        <h6 className="text-bold-600">
+                          <NumberFormat
+                            value={item.person_type_b}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
+                        </h6>
+                      </td>
+                      
+                    
                       <td className="text-truncate">
                         {/* ลูกจ้างรายวัน */}
                         <h6 className="text-bold-600">

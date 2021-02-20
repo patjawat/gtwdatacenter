@@ -6,8 +6,7 @@ import NumberFormat from "react-number-format";
 import Axios from "../axios.config";
 
 export default function TotalSummary() {
-  const [person, setPerson] = useState(0);
-  const [asset, setAsset] = useState(0);
+  const [summary, setSummary] = useState(0);
   const [branch, setBranch] = useState(0);
 
   useEffect(async () => {
@@ -15,18 +14,18 @@ export default function TotalSummary() {
   }, []);
 
   const getData = async () => {
-    const person = await Axios.get("datacenter/persons/total");
-    const asset = await Axios.get("datacenter/persons/total");
+    const {data} = await Axios.get("datacenter");
 
-    setPerson(person.data);
-    setAsset(asset.data);
+
+    setSummary(data.summary);
+    setBranch(data.branchs);
   };
 
   return (
     <div className="row">
       <div className="col-xl-3 col-lg-6 col-12">
         <Link href="/persons">
-          <div class="card bg-gradient-directional-info">
+          <div class="card pull-up bg-gradient-directional-info">
             <div class="card-content">
               <div class="card-body">
                 <div class="media d-flex">
@@ -36,7 +35,7 @@ export default function TotalSummary() {
                   <div class="media-body text-white text-right">
                     <h3 class="text-white">
                       <NumberFormat
-                        value={person}
+                        value={summary ? summary[0].person : 0}
                         displayType={"text"}
                         thousandSeparator={true}
                         prefix={""}
@@ -44,7 +43,6 @@ export default function TotalSummary() {
                     </h3>
                     <span>
                       บุคคลากร
-                      {JSON.stringify(person)}
                     </span>
                   </div>
                 </div>
@@ -56,24 +54,24 @@ export default function TotalSummary() {
 
       <div className="col-xl-3 col-lg-6 col-12">
         <Link href="/assets">
-          <div class="card bg-gradient-directional-success">
+          <div class="card pull-up bg-gradient-directional-success">
             <div class="card-content">
               <div class="card-body">
                 <div class="media d-flex">
                   <div class="align-self-center">
-                    <i class="icon-user text-white font-large-2 float-left"></i>
+                    <i class="icon-screen-desktop text-white font-large-2 float-left"></i>
                   </div>
                   <div class="media-body text-white text-right">
                     <h3 class="text-white">
                       <NumberFormat
-                        value={asset}
+                        value={summary ? summary[0].asset : 0}
                         displayType={"text"}
                         thousandSeparator={true}
                         prefix={""}
                       />
                     </h3>
 
-                    <span>ทรัพย์สิน(รายการ)</span>
+                    <span>ครุภัณฑ์(รายการ)</span>
                   </div>
                 </div>
               </div>
@@ -84,24 +82,24 @@ export default function TotalSummary() {
 
       <div className="col-xl-3 col-lg-6 col-12">
         <Link href="/branchs">
-          <div class="card bg-gradient-directional-warning">
+          <div class="card pull-up bg-gradient-directional-warning">
             <div class="card-content">
               <div class="card-body">
                 <div class="media d-flex">
                   <div class="align-self-center">
-                    <i class="icon-pointer text-white font-large-2 float-left"></i>
+                    <i class="icon-home text-white font-large-2 float-left"></i>
                   </div>
                   <div class="media-body text-white text-right">
                     <h3 class="text-white">
                       <NumberFormat
-                        value={branch}
+                        value={summary ? summary[0].assetbuildings : 0}
                         displayType={"text"}
                         thousandSeparator={true}
                         prefix={""}
                       />
                     </h3>
 
-                    <span>หน่วยบริการ</span>
+                    <span>สิ่งก่อสร้าง</span>
                   </div>
                 </div>
               </div>
@@ -111,16 +109,16 @@ export default function TotalSummary() {
       </div>
 
       <div className="col-xl-3 col-lg-6 col-12">
-        <div class="card bg-gradient-directional-danger">
+        <div class="card pull-up bg-gradient-directional-danger">
           <div class="card-content">
             <div class="card-body">
               <div class="media d-flex">
                 <div class="align-self-center">
-                  <i class="icon-pie-chart text-white font-large-2 float-left"></i>
+                <i class="icon-pointer text-white font-large-2 float-left"></i>
                 </div>
                 <div class="media-body text-white text-right">
-                  <h3 class="text-white">0</h3>
-                  <span>บัญชี</span>
+                  <h3 class="text-white">{branch}</h3>
+                  <span>หน่วยบริการ</span>
                 </div>
               </div>
             </div>

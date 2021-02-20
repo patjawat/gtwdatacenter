@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
 import { Doughnut, Pie } from "react-chartjs-2";
+import 'chartjs-plugin-labels';
 
 import Axios from "../axios.config";
 
@@ -63,17 +64,44 @@ if(typeSummary === null) return '';
     <div>
           <Doughnut
             data={dataChart}
-            // width={400}
-            height={230}
+            width={400}
+            height={330}
             options={{
+              plugins: {
+                labels: {
+                  render: 'percentage',
+                  fontSize: 20,
+                  fontStyle: 'bold',
+                  fontColor: '#fff',
+                  fontFamily: '"Lucida Console", Kanit, monospace'
+                }
+              },
               responsive: true,
               maintainAspectRatio: false,
-              cutoutPercentage: 50,
+              cutoutPercentage: 40,
               responsive: true,
               title: {
                 text: "ร้อยละบุคคลแยกตามเพศ",
                 display:false,
               },
+              tooltips: {
+                enabled: true,
+                callbacks: {
+                  label: function (tooltipItem, data) {
+                    var dataset = data.datasets[tooltipItem.datasetIndex];
+                    var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+                      return previousValue + currentValue;
+                    });
+                    var currentValue = dataset.data[tooltipItem.index];
+                    var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+                    return percentage + "%";
+                  },                    
+                  title: function (tooltipItem, data) {
+                    return data.labels[tooltipItem[0].index];
+                  },
+                },
+              },
+             
             }}
           />
    

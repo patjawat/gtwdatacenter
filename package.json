@@ -4,13 +4,14 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build && next export -o ../datacenterv2",
+        "build": "next build && next export -o ../datacenterv2 && sh /Users/patjawat/dev/gotowin/datacenter/syncto_cloundais.sh",
         "start": "next start"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
         "axios": "^0.21.1",
         "chart.js": "^2.9.4",
+        "chartjs-plugin-labels": "^1.1.0",
         "file-loader": "^6.2.0",
         "formik": "^2.2.6",
         "js-cookie": "^2.2.1",

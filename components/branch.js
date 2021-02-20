@@ -67,7 +67,7 @@ function Example() {
                           {item.name}
                         </td>
                         <td className="text-truncate">
-                          <a href="#">{item.hos_code}</a>
+                          <a href="#">{item.hospcode}</a>
                         </td>
                         <td>
                           <button
