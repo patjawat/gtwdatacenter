@@ -26,28 +26,29 @@ export default function Index() {
     const gradient = ctx.createLinearGradient(0, 0, 100, 0);
 
     const purple_orange_gradient = ctx.createLinearGradient(0, 0, 300, 600);
-    purple_orange_gradient.addColorStop(0, "#0c84d1");
-    purple_orange_gradient.addColorStop(1, "#4eb4f5");
+    purple_orange_gradient.addColorStop(0, "#3a44e1");
+    purple_orange_gradient.addColorStop(1, "#9298ef");
+ 
 
     const purple_orange_gradient1 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient1.addColorStop(1, "#FDEB71");
-    purple_orange_gradient1.addColorStop(0, "#F8D800");
+    purple_orange_gradient1.addColorStop(0, "#0c84d1");
+    purple_orange_gradient1.addColorStop(1, "#4eb4f5");
 
     const purple_orange_gradient2 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient2.addColorStop(1, "#ABDCFF");
-    purple_orange_gradient2.addColorStop(0, "#0396FF");
+    purple_orange_gradient2.addColorStop(1, "#20a576");
+    purple_orange_gradient2.addColorStop(0, "#4eddaa");
 
     const purple_orange_gradient3 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient3.addColorStop(1, "#CE9FFC");
-    purple_orange_gradient3.addColorStop(0, "#7367F0");
+    purple_orange_gradient3.addColorStop(1, "#ff7216");
+    purple_orange_gradient3.addColorStop(0, "#ffb07c");
 
     const purple_orange_gradient4 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient4.addColorStop(1, "#FFF6B7");
-    purple_orange_gradient4.addColorStop(0, "#F6416C");
+    purple_orange_gradient4.addColorStop(1, "red");
+    purple_orange_gradient4.addColorStop(0, "blue");
 
     const purple_orange_gradient5 = ctx.createLinearGradient(0, 0, 0, 600);
-    purple_orange_gradient5.addColorStop(1, "#FF7AF5");
-    purple_orange_gradient5.addColorStop(0, "#513162");
+    purple_orange_gradient5.addColorStop(1, "blue");
+    purple_orange_gradient5.addColorStop(0, "red");
 
     const purple_orange_gradient6 = ctx.createLinearGradient(0, 0, 0, 600);
     purple_orange_gradient6.addColorStop(1, "#FFE985");
@@ -74,13 +75,13 @@ export default function Index() {
         data: [...new Set(getDatasets.map((n) => n.person_type_a))],
       },
       {
-        label: "จ้างเหมาบริการ",
+        label: "ลูกจ้างประจำ",
         backgroundColor: purple_orange_gradient1,
         hoverBackgroundColor: purple_orange_gradient1,
         data: [...new Set(getDatasets.map((n) => n.person_type_b))],
       },
       {
-        label: "จ้างเหมาบริการบุคคล",
+        label: "พนักงานราชการ",
         backgroundColor: purple_orange_gradient2,
         hoverBackgroundColor: purple_orange_gradient2,
         data: [...new Set(getDatasets.map((n) => n.person_type_c))],
@@ -122,15 +123,15 @@ export default function Index() {
     <>
       <div className="row">
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card pull-up">
+        <div className="card pull-up bg-gradient-directional-secondary">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
                   <div className="align-self-center">
-                    <i className="icon-user primary font-large-2 float-left" />
+                    <i className="icon-users text-white font-large-2 float-left" />
                   </div>
-                  <div className="media-body text-right">
-                    <h3>
+                  <div className="media-body text-white text-right">
+                    <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
                           value={typeSummary.type_all.total}
@@ -154,15 +155,15 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card pull-up">
+          <div className="card bg-gradient-directional-primary bg-darken-4">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
                   <div className="align-self-center">
-                    <i className="icon-user primary font-large-2 float-left" />
+                    <i className="icon-badge text-white font-large-2 float-left" />
                   </div>
-                  <div className="media-body text-right">
-                    <h3>
+                  <div className="media-body text-white text-right">
+                    <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
                           value={typeSummary.type_a.total}
@@ -186,15 +187,15 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card pull-up">
+        <div className="card bg-gradient-directional-info">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
                   <div className="align-self-center">
-                    <i className="icon-user primary font-large-2 float-left" />
+                    <i className="fas fa-user-tag text-white font-large-2 float-left" />
                   </div>
-                  <div className="media-body text-right">
-                    <h3>
+                  <div className="media-body text-white text-right">
+                    <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
                           value={typeSummary.type_b.total}
@@ -218,15 +219,15 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card pull-up">
+        <div className="card bg-gradient-directional-success">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
                   <div className="align-self-center">
-                    <i className="icon-user primary font-large-2 float-left" />
+                    <i className="fas fa-user-shield text-white font-large-2 float-left" />
                   </div>
-                  <div className="media-body text-right">
-                    <h3>
+                  <div className="media-body text-white text-right">
+                    <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
                           value={typeSummary.type_c.total}
@@ -249,15 +250,15 @@ export default function Index() {
           </div>
         </div>
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card pull-up">
+        <div className="card bg-gradient-directional-warning">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
                   <div className="align-self-center">
-                    <i className="icon-user primary font-large-2 float-left" />
+                    <i className="fas fa-hand-holding-medical text-white font-large-2 float-left" />
                   </div>
-                  <div className="media-body text-right">
-                    <h3>
+                  <div className="media-body text-white text-right">
+                    <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
                           value={typeSummary.type_d.total}
@@ -281,15 +282,15 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card pull-up">
+        <div className="card bg-gradient-directional-info">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
                   <div className="align-self-center">
-                    <i className="icon-user primary font-large-2 float-left" />
+                    <i className="icon-calendar text-white font-large-2 float-left" />
                   </div>
-                  <div className="media-body text-right">
-                    <h3>
+                  <div className="media-body text-white text-right">
+                    <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
                           value={typeSummary.type_e.total}
@@ -313,15 +314,15 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card pull-up">
+        <div className="card bg-gradient-directional-info">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
                   <div className="align-self-center">
-                    <i className="icon-user primary font-large-2 float-left" />
+                    <i className="fas fa-user-clock text-white font-large-2 float-left" />
                   </div>
-                  <div className="media-body text-right">
-                    <h3>
+                  <div className="media-body text-white text-right">
+                    <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
                           value={typeSummary.type_f.total}
@@ -345,15 +346,16 @@ export default function Index() {
         </div>
 
         <div className="col-xl-3 col-md-6 col-12">
-          <div className="card pull-up">
+
+        <div className="card bg-gradient-directional-danger">
             <div className="card-content">
               <div className="card-body">
                 <div className="media d-flex">
                   <div className="align-self-center">
-                    <i className="icon-user primary font-large-2 float-left" />
+                    <i className="fas fa-users text-white font-large-2 float-left" />
                   </div>
-                  <div className="media-body text-right">
-                    <h3>
+                  <div className="media-body text-white text-right">
+                    <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
                           value={typeSummary.type_other.total}
@@ -367,24 +369,25 @@ export default function Index() {
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
                     <span>
-                      {typeSummary !== null
-                        ? typeSummary.type_other.label
-                        : null}
+                      {typeSummary !== null ? typeSummary.type_other.label : null}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
+        </div>
+        
+      </div>
 
       <div className="row">
         <div className="col-12">
           <div className="card pull-up">
-          <div className="card-header">
-              <h4 className="card-title">ภาพรวมบุคลากรทั้งหมดของเขตสุขภาพที่ 1</h4>
+            <div className="card-header">
+              <h4 className="card-title">
+                ภาพรวมบุคลากรทั้งหมดของเขตสุขภาพที่ 1
+              </h4>
               <a className="heading-elements-toggle">
                 <i className="la la-ellipsis-v font-medium-3" />
               </a>
@@ -451,7 +454,6 @@ export default function Index() {
       </div>
 
       <ListSummary data={getDatasets} />
-
     </>
   );
 }
@@ -497,91 +499,88 @@ function ListSummary({ data }) {
                       <td className="text-truncate">
                         {/* ข้าราชการ */}
                         <h6 className="text-bold-600">
-                        <NumberFormat
-                          value={item.person_type_a}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
+                          <NumberFormat
+                            value={item.person_type_a}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
                         </h6>
                       </td>
                       <td className="text-truncate">
                         {/* ลูกจ้างประจำ */}
                         <h6 className="text-bold-600">
-                        <NumberFormat
-                          value={item.person_type_b}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
+                          <NumberFormat
+                            value={item.person_type_b}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
                         </h6>
                       </td>
                       <td className="text-truncate">
                         {/* พนักงานราชการ */}
                         <h6 className="text-bold-600">
-                        <NumberFormat
-                          value={item.person_type_c}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
+                          <NumberFormat
+                            value={item.person_type_c}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
                         </h6>
                       </td>
                       <td className="text-truncate">
                         {/* พนักงานกระทรวงสาธารณสุข */}
                         <h6 className="text-bold-600">
-                        <NumberFormat
-                          value={item.person_type_d}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
+                          <NumberFormat
+                            value={item.person_type_d}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
                         </h6>
                       </td>
                       <td className="text-truncate">
                         {/* ลูกจ้างรายวัน */}
                         <h6 className="text-bold-600">
-                        <NumberFormat
-                          value={item.person_type_e}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
+                          <NumberFormat
+                            value={item.person_type_e}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
                         </h6>
                       </td>
                       <td className="text-truncate">
                         {/* ทั้งหมด */}
                         <h6 className="text-bold-600">
-                        <NumberFormat
-                          value={item.person_type_other}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
+                          <NumberFormat
+                            value={item.person_type_other}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
                         </h6>
-
                       </td>
                       <td className="text-truncate">
-                      <h6 className="text-bold-600">
-                        <NumberFormat
-                          value={item.man}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
+                        <h6 className="text-bold-600">
+                          <NumberFormat
+                            value={item.man}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
                         </h6>
-
                       </td>
                       <td className="text-truncate">
-                      <h6 className="text-bold-600">
-                        <NumberFormat
-                          value={item.woman}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={""}
-                        />
+                        <h6 className="text-bold-600">
+                          <NumberFormat
+                            value={item.woman}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            prefix={""}
+                          />
                         </h6>
-
                       </td>
                     </tr>
                   );
