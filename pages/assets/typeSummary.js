@@ -30,7 +30,7 @@ setTypeSummaryTotal(Total); // 36 calories
         <div className="card-content box-shadow-2">
           <div className="media align-items-stretch bg-gradient-x-primary text-white rounded">
             <div className="bg-primary bg-darken-2 p-2 media-middle">
-              <i className="icon-pencil font-large-2 text-white"></i>
+              <i className="icon-wallet font-large-2 text-white"></i>
             </div>
             <div className="media-body p-2">
               <h4 className="text-white">เงิน UC </h4>
@@ -64,7 +64,7 @@ setTypeSummaryTotal(Total); // 36 calories
         <div className="card-content box-shadow-2">
           <div className="media align-items-stretch bg-gradient-x-info text-white rounded">
             <div className="bg-info bg-darken-2 p-2 media-middle">
-              <i className="icon-pencil font-large-2 text-white"></i>
+              <i className="icon-wallet font-large-2 text-white"></i>
             </div>
             <div className="media-body p-2">
               <h4 className="text-white">เงิน NON UC </h4>
@@ -91,7 +91,7 @@ setTypeSummaryTotal(Total); // 36 calories
         <div className="card-content box-shadow-2">
           <div className="media align-items-stretch bg-gradient-x-success text-white rounded">
             <div className="bg-success bg-darken-2 p-2 media-middle">
-              <i className="icon-pencil font-large-2 text-white"></i>
+              <i className="icon-wallet font-large-2 text-white"></i>
             </div>
             <div className="media-body p-2">
               <h4 className="text-white">เงินบำรุง </h4>
@@ -125,7 +125,7 @@ setTypeSummaryTotal(Total); // 36 calories
         <div className="card-content box-shadow-2">
           <div className="media align-items-stretch bg-gradient-x-warning text-white rounded">
             <div className="bg-warning bg-darken-2 p-2 media-middle">
-              <i className="icon-pencil font-large-2 text-white"></i>
+              <i className="icon-wallet font-large-2 text-white"></i>
             </div>
             <div className="media-body p-2">
               <h4 className="text-white">เงินประกันสังคม </h4>
@@ -153,7 +153,7 @@ setTypeSummaryTotal(Total); // 36 calories
         <div className="card-content box-shadow-2">
           <div className="media align-items-stretch bg-gradient-x-danger text-white rounded">
             <div className="bg-danger bg-darken-2 p-2 media-middle">
-              <i className="icon-pencil font-large-2 text-white"></i>
+              <i className="icon-wallet font-large-2 text-white"></i>
             </div>
             <div className="media-body p-2">
               <h4 className="text-white">เงินบริจาค </h4>
@@ -187,7 +187,7 @@ setTypeSummaryTotal(Total); // 36 calories
         <div className="card-content box-shadow-2">
           <div className="media align-items-stretch bg-gradient-x-secondary text-white rounded">
             <div className="bg-secondary bg-darken-2 p-2 media-middle">
-              <i className="icon-pencil font-large-2 text-white"></i>
+              <i className="icon-wallet font-large-2 text-white"></i>
             </div>
             <div className="media-body p-2">
               <h4 className="text-white">เงินอื่น ๆ </h4>

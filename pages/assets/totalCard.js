@@ -53,7 +53,7 @@ export default function Index() {
       </div>
 
       <div className="col-xl-4 col-lg-6 col-12">
-        <Link href="/branchs">
+        <Link href="/assets">
           <div className="card pull-up">
             <div className="card-content">
               <div className="card-body">
