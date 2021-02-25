@@ -1,5 +1,5 @@
 import React from 'react'
-import Theme from "../../themes";
+import Theme from "@/components/themes";
 
 export default function Index() {
     return (

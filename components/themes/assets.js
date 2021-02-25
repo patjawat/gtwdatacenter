@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Cookies from "js-cookie";
-import axios from "../axios.config";
+import axios from "../../axios.config";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import Content from "./content";

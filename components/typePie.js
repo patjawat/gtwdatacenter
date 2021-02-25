@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import NumberFormat from "react-number-format";
 import { Doughnut, Pie } from "react-chartjs-2";
-import 'chartjs-plugin-labels';
-
 import Axios from "../axios.config";
 
-
-export default function Index()  {
-
+export default function Index() {
   const [getDatasets, setDataset] = useState([]);
   const [typeSummary, setTypeSummary] = useState(null);
 
@@ -22,8 +17,6 @@ export default function Index()  {
     setTypeSummary(dataTypeSummary.data);
   };
 
-
-
   const dataChart = (canvas) => {
     const ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(0, 0, 100, 0);
@@ -36,7 +29,7 @@ export default function Index()  {
     purple_orange_gradient1.addColorStop(1, "#FDEB71");
     purple_orange_gradient1.addColorStop(0, "#F8D800");
 
-if(typeSummary === null) return '';
+    if (typeSummary === null) return "";
     return {
       labels: ["ข้าราชการ", "อื่นๆ"],
       datasets: [
@@ -49,62 +42,53 @@ if(typeSummary === null) return '';
             "rgb(255, 205, 86)",
           ],
           hoverOffset: 4,
-          options:{
+          options: {
             responsive: true,
             legend: {
               position: "bottom",
             },
-          }
+          },
         },
       ],
-      };
+    };
+  };
+
+  var options = {
+    tooltips: {
+      enabled: false,
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          let datasets = ctx.chart.data.datasets;
+          if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+            let sum = datasets[0].data.reduce((a, b) => a + b, 0);
+            let percentage = Math.round((value / sum) * 100) + "%";
+            return percentage;
+          } else {
+            return percentage;
+          }
+        },
+        color: "#fff",
+        font: {
+          weight: "bold",
+          size: 30,
+        },
+      },
+    },
   };
 
   return (
-    <div>
-          <Doughnut
-            data={dataChart}
-            width={400}
-            height={330}
-            options={{
-              plugins: {
-                labels: {
-                  render: 'percentage',
-                  fontSize: 20,
-                  fontStyle: 'bold',
-                  fontColor: '#fff',
-                  fontFamily: '"Lucida Console", Kanit, monospace'
-                }
-              },
-              responsive: true,
-              maintainAspectRatio: false,
-              cutoutPercentage: 40,
-              responsive: true,
-              title: {
-                text: "ร้อยละบุคคลแยกตามเพศ",
-                display:false,
-              },
-              tooltips: {
-                enabled: true,
-                callbacks: {
-                  label: function (tooltipItem, data) {
-                    var dataset = data.datasets[tooltipItem.datasetIndex];
-                    var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
-                      return previousValue + currentValue;
-                    });
-                    var currentValue = dataset.data[tooltipItem.index];
-                    var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
-                    return percentage + "%";
-                  },                    
-                  title: function (tooltipItem, data) {
-                    return data.labels[tooltipItem[0].index];
-                  },
-                },
-              },
-             
-            }}
-          />
-   
+    <div className="card pull-up">
+            <div className="card-header">
+              <h4 className="card-title">ร้อยละบุคคลแยกตามประเภท</h4>
+              <a className="heading-elements-toggle">
+                <i className="la la-ellipsis-v font-medium-3" />
+              </a>
+            </div>
+            <div className="card-content collapse show pb-3">
+        <Doughnut data={dataChart} height={160} options={options} />
+      </div>
     </div>
   );
 }

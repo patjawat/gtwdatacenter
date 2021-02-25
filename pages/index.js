@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Theme from "../themes";
+import Theme from "@/components/themes";
+import  'chartjs-plugin-datalabels';
 
-import TotalSummary from "../components/totalSummary"
-import Branch from "../components/branch"
-import GroupChartSummary from "../components/groupChartSummary"
+
+import TotalSummary from "@/components/totalSummary"
+import Branch from "@/components/branch"
+import GroupChartSummary from "@/components/groupChartSummary"
 
 export default function Home(props) {
   return (
@@ -16,21 +18,3 @@ export default function Home(props) {
   )
 }
 Home.Layout =Theme;
-
-export async function getStaticProps(context) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts`)
-  const posts = await res.json()
-
-  if (!posts) {
-    return {
-      notFound: true,
-    }
-  }
-
-  return {
-    props: {
-      posts,
-      msg:'Hello'
-    }, // will be passed to the page component as props
-  }
-}

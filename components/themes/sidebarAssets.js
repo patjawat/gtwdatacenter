@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function sidebar() {
+export default function Index() {
   return (
     <div className="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true" style={{touchAction: 'none', userSelect: 'none', WebkitUserDrag: 'none', WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)'}}>
     <div className="main-menu-content ps ps--active-y" style={{height: '654.75px'}}>

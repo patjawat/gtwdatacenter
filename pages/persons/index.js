@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Theme from "../../themes";
+import Theme from "@/components/themes";
 import NumberFormat from "react-number-format";
-import { Bar, Pie } from "react-chartjs-2";
-import Sexpie from "../../components/sexPie";
-import Typepie from "../../components/typePie";
+import Sexpie from "@/components/sexPie";
+import Typepie from "@/components/typePie";
 import Axios from "../../axios.config";
+import BarChartSummery from "./BarChartSummery"
+import  'chartjs-plugin-datalabels';
 
 export default function Index() {
   const [getDatasets, setDataset] = useState([]);
@@ -119,8 +120,13 @@ export default function Index() {
     };
   };
 
+
+
+
+
   return (
     <>
+
       <div className="row">
         <div className="col-xl-3 col-md-6 col-12">
         <div className="card pull-up bg-gradient-directional-secondary">
@@ -140,7 +146,7 @@ export default function Index() {
                           prefix={""}
                         />
                       ) : (
-                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <i className="fas fa-circle-notch fa-spin"></i>
                       )}
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
@@ -172,7 +178,7 @@ export default function Index() {
                           prefix={""}
                         />
                       ) : (
-                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <i className="fas fa-circle-notch fa-spin" />
                       )}
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
@@ -204,7 +210,7 @@ export default function Index() {
                           prefix={""}
                         />
                       ) : (
-                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <i className="fas fa-circle-notch fa-spin"></i>
                       )}
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
@@ -236,7 +242,7 @@ export default function Index() {
                           prefix={""}
                         />
                       ) : (
-                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <i className="fas fa-circle-notch fa-spin"></i>
                       )}
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
@@ -267,7 +273,7 @@ export default function Index() {
                           prefix={""}
                         />
                       ) : (
-                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <i className="fas fa-circle-notch fa-spin"></i>
                       )}
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
@@ -299,7 +305,7 @@ export default function Index() {
                           prefix={""}
                         />
                       ) : (
-                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <i className="fas fa-circle-notch fa-spin"></i>
                       )}
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
@@ -331,7 +337,7 @@ export default function Index() {
                           prefix={""}
                         />
                       ) : (
-                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <i className="fas fa-circle-notch fa-spin"></i>
                       )}
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
@@ -364,7 +370,7 @@ export default function Index() {
                           prefix={""}
                         />
                       ) : (
-                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <i className="fas fa-circle-notch fa-spin"></i>
                       )}
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
@@ -397,25 +403,8 @@ export default function Index() {
                 <div className="col-xl-12 col-lg-9">
                   <div className="card-body">
                     <div className="rickshaw-wrap">
-                      <Bar
-                        data={dataChart}
-                        height={100}
-                        options={{
-                          plugins: {
-                            labels: {
-                              render: 'value',
-                            }
-                          },
-                          responsive: true,
-                          legend: {
-                            // position: "right",
-                          },
-                          title: {
-                            text: "ภาพรวมบุคลากรทั้งหมดของเขตสุขภาพที่ 1",
-                            display: false,
-                          },
-                        }}
-                      />
+                    <BarChartSummery dataChart={dataChart} />
+                     
                       <div className="rickshaw-legend-wrap">
                         <div id="area-chart-legend" />
                       </div>
@@ -430,31 +419,13 @@ export default function Index() {
 
       <div className="row">
         <div className="col-sm-6 col-lg-6 col-md-6">
-          <div className="card pull-up">
-            <div className="card-header">
-              <h4 className="card-title">ร้อยละบุคคลแยกตามเพศ</h4>
-              <a className="heading-elements-toggle">
-                <i className="la la-ellipsis-v font-medium-3" />
-              </a>
-            </div>
-            <div className="card-content collapse show">
+         
               <Sexpie />
-            </div>
-          </div>
+
         </div>
 
         <div className="col-sm-6 col-lg-6 col-md-">
-          <div className="card pull-up">
-            <div className="card-header">
-              <h4 className="card-title">ร้อยละบุคคลแยกตามประเภท</h4>
-              <a className="heading-elements-toggle">
-                <i className="la la-ellipsis-v font-medium-3" />
-              </a>
-            </div>
-            <div className="card-content collapse show p-3">
               <Typepie />
-            </div>
-          </div>
         </div>
       </div>
 
@@ -496,7 +467,7 @@ function ListSummary({ data }) {
               <tbody>
                 {data.map((item, i) => {
                   return (
-                    <tr className="pull-up">
+                    <tr className="pull-up" key={i}>
                       <td className="text-truncate">
                         <i className="la la-dot-circle-o success font-medium-1 mr-1" />{" "}
                         {item.name}

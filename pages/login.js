@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import BlankLayout from "../themes/blankLayout";
+import BlankLayout from "@/components/themes/blankLayout";
 import { connect } from "react-redux";
 import { Formik } from "formik";
 import axios from "axios";

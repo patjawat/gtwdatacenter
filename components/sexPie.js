@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import NumberFormat from "react-number-format";
 import { Doughnut, Pie } from "react-chartjs-2";
-import "chartjs-plugin-labels";
-import { useSelector } from "react-redux";
+
 import {
   useQuery,
-  useQueryClient,
-  useMutation,
   QueryClient,
   QueryClientProvider,
 } from "react-query";
@@ -47,57 +44,60 @@ function PieChart() {
         {
           label: "My First Dataset",
           data: [data.sexsummery.m, data.sexsummery.f],
+          borderColor: "#fff",
           backgroundColor: [
             "rgb(255, 99, 132)",
             "rgb(54, 162, 235)",
             "rgb(255, 205, 86)",
           ],
           hoverOffset: 4,
-          options: [
-            {
-              responsive: true,
-              legend: {
-                position: "bottom",
-              },
-            },
-          ],
         },
       ],
     };
   };
 
+  var options = {
+    tooltips: {
+      enabled: false
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          let datasets = ctx.chart.data.datasets;
+          if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+            let sum = datasets[0].data.reduce((a, b) => a + b, 0);
+            let percentage = Math.round((value / sum) * 100) + '%';
+            return percentage;
+          } else {
+            return percentage;
+          }
+        },
+        color: '#fff',
+        font: {
+          weight: 'bold',
+          size: 30,
+        }
+      },
+    }
+  };
+  
   return (
-    <div>
-      <div className="card pull-up">
-        <div className="card-header">
-          <a className="heading-elements-toggle">
-            <i className="la la-ellipsis-h font-medium-3" />
-          </a>
-          <div className="heading-elements"></div>
-        </div>
-        <div className="card-content collapse show">
-          <Doughnut
+    <div className="card pull-up">
+            <div className="card-header">
+              <h4 className="card-title">ร้อยละบุคคลแยกตามเพศ</h4>
+              <a className="heading-elements-toggle">
+                <i className="la la-ellipsis-v font-medium-3" />
+              </a>
+            </div>
+            <div className="card-content collapse show pb-3">
+        <Doughnut
             data={dataChart}
-            width={400}
-            height={330}
-            options={{
-              plugins: {
-                labels: {
-                  render: 'percentage',
-                  fontSize: 20,
-                  fontStyle: 'bold',
-                  fontColor: '#fff',
-                  fontFamily: '"Lucida Console", Kanit, monospace'
-                }
-              },
-              responsive: true,
-              maintainAspectRatio: false,
-              cutoutPercentage: 40,
-              responsive: true,
-            }}
+            // width={20}
+            height={160}
+            options={options}
           />
         </div>
       </div>
-    </div>
+
   );
 }

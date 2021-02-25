@@ -15,8 +15,8 @@ function ChartSmmery(props) {
 
   const getDataset = async () => {
     const { data } = await Axios.get("datacenter/assets/datasets");
-    setDataset(data);
-    setTypeGroup(data);
+    await setDataset(data);
+    await setTypeGroup(data);
   };
 
   const dataChart = (canvas) => {
@@ -53,6 +53,35 @@ function ChartSmmery(props) {
     };
   };
 
+  var options = {
+    responsive: true,
+    legend: {
+        position: 'top',
+        display: true,
+    },
+    hover: {
+      "animationDuration": 0
+    },
+    plugins: {
+      datalabels: {
+        color: 'black',
+        anchor: 'end',
+        offset: 1,
+        padding: 0,
+        
+        align: function(context) {
+          return 'end';
+        },
+      }
+    },
+    
+    title: {
+        display: false,
+        text: ''
+    },
+
+  };
+
   return (
     <div>
       <div className="row">
@@ -65,12 +94,8 @@ function ChartSmmery(props) {
                     <div className="rickshaw-wrap">
                       <Bar
                         data={dataChart}
-                        // width={400}
                         height={150}
-                        options={{
-                          responsive: true,
-                          title: { text: "ข้อมูลสิ่งที่มีอยู่", display: true },
-                        }}
+                        options={options}
                       />
                       <div className="rickshaw-legend-wrap">
                         <div id="area-chart-legend" />

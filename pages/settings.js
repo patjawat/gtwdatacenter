@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Theme from "../themes";
+import Theme from "@/components/themes";
 import Axios from "../axios.config";
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux'

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 import NumberFormat from "react-number-format";
-import Theme from "@/components/themes";
+
 import Axios from "../../axios.config";
-import  'chartjs-plugin-datalabels';
-import TypeSummary from "./typeSummary";
-import TotalCard from "./totalCard";
-export default function Index() {
+function ChartSmmery(props) {
+  const store = useSelector((state) => state.infomation);
   const [dataset, setDataset] = useState([]);
   const [typeGroup, setTypeGroup] = useState([]);
 
@@ -54,8 +53,6 @@ export default function Index() {
     };
   };
 
-
-
   var options = {
     responsive: true,
     legend: {
@@ -87,62 +84,34 @@ export default function Index() {
 
   return (
     <div>
-      <TotalCard />
       <div className="row">
-        <div className="col-sm-12 col-md-8 col-lg-8">
-          <div className="card pull-up">
-            <div className="card-header">
-              <h4 className="card-title">ข้อมูลสิ่งที่มีอยู่</h4>
-              <a className="heading-elements-toggle">
-                <i className="la la-ellipsis-v font-medium-3" />
-              </a>
-            </div>
+        <div className="col-12">
+          <div className="card">
             <div className="card-content collapse show">
-              <Bar
-                data={dataChart}
-                // width={400}
-                height={150}
-                options={options}
-              />
+              <div className="row">
+                <div className="col-xl-12 col-lg-12">
+                  <div className="card-body">
+                    <div className="rickshaw-wrap">
+                      <Bar
+                        data={dataChart}
+                        height={150}
+                        options={options}
+                      />
+                      <div className="rickshaw-legend-wrap">
+                        <div id="area-chart-legend" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+               
+              </div>
             </div>
           </div>
         </div>
-        <div className="col-sm-12 col-md-4 col-lg-4">
-              <TypeSummary />
       </div>
-      </div>
-      {/* <div className="row">
-        <div className="col-sm-12 col-md-4 col-lg-4">
-          <div className="card pull-up">
-            <div className="card-header">
-              <h4 className="card-title">ข้อมูลแผน 5 ปี</h4>
-              <a className="heading-elements-toggle">
-                <i className="la la-ellipsis-v font-medium-3" />
-              </a>
-            </div>
-            <div className="card-content collapse show">
-                <h1 className="text-center">Soon</h1>
-
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-12 col-md-8 col-lg-8">
-          <div className="card pull-up">
-            <div className="card-header">
-              <h4 className="card-title">ข้อมูลแผน 5 ปี</h4>
-              <a className="heading-elements-toggle">
-                <i className="la la-ellipsis-v font-medium-3" />
-              </a>
-            </div>
-            <div className="card-content collapse show">
-                <h1 className="text-center">Soon</h1>
-            </div>
-          </div>
-        </div>
-
-      </div> */}
     </div>
   );
 }
 
-Index.Layout = Theme;
+export default ChartSmmery;
