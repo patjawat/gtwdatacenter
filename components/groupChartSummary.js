@@ -34,14 +34,14 @@ function ChartSmmery(props) {
     datasets.push(
       {
         label: "ครุภัณฑ์",
-        backgroundColor: purple_orange_gradient,
-        hoverBackgroundColor: purple_orange_gradient,
+        backgroundColor: '#20a576',
+        // hoverBackgroundColor: purple_orange_gradient,
         data: [...new Set(dataset.map((n) => n.asset))],
       },
       {
         label: "สิ่งก่อสร้าง",
         backgroundColor: purple_orange_gradient1,
-        hoverBackgroundColor: purple_orange_gradient1,
+        // hoverBackgroundColor: purple_orange_gradient1,
         data: [...new Set(dataset.map((n) => n.assetbuildings))],
       }
     );
