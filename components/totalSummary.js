@@ -25,7 +25,6 @@ export default function TotalSummary() {
           <div className="card pull-up bg-gradient-directional-info">
             <div className="card-content">
               <div className="card-body">
-        <Link href="/persons">
                 <div className="media d-flex">
                   <div className="align-self-center">
                     <i className="icon-user text-white font-large-2 float-left" />
@@ -39,19 +38,20 @@ export default function TotalSummary() {
                         prefix={""}
                       />
                     </h3>
-                    <span>
+        <Link href="/persons">
+                    <button type="button" class="btn btn-sm btn-outline-light btn-min-width">บุคคลากร</button>
+                    </Link>
+                    {/* <span>
                       บุคคลากร
-                    </span>
+                    </span> */}
                   </div>
                 </div>
-        </Link>
               </div>
             </div>
           </div>
       </div>
 
       <div className="col-xl-3 col-lg-6 col-12">
-        <Link href="/assets">
           <div className="card pull-up bg-gradient-directional-success">
             <div className="card-content">
               <div className="card-body">
@@ -68,14 +68,14 @@ export default function TotalSummary() {
                         prefix={""}
                       />
                     </h3>
-
-                    <span>ครุภัณฑ์(รายการ)</span>
+        <Link href="/assets">
+                    <button type="button" class="btn btn-sm btn-outline-light btn-min-width">ครุภัณฑ์(รายการ)</button>
+        </Link>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </Link>
       </div>
 
       <div className="col-xl-3 col-lg-6 col-12">
@@ -96,8 +96,7 @@ export default function TotalSummary() {
                         prefix={""}
                       />
                     </h3>
-
-                    <span>สิ่งก่อสร้าง</span>
+                    <button type="button" class="btn btn-sm btn-outline-light btn-min-width">สิ่งก่อสร้าง</button>
                   </div>
                 </div>
               </div>

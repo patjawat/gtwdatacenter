@@ -71,45 +71,51 @@ export default function Index() {
     datasets.push(
       {
         label: "ข้าราชการ",
-        backgroundColor: purple_orange_gradient,
-        hoverBackgroundColor: purple_orange_gradient,
+        backgroundColor: "#9298ef",
+        hoverBackgroundColor: "#9298ef",
         data: [...new Set(getDatasets.map((n) => n.person_type_a))],
       },
       {
         label: "ลูกจ้างประจำ",
-        backgroundColor: purple_orange_gradient1,
-        hoverBackgroundColor: purple_orange_gradient1,
+        backgroundColor: "#4eb4f5",
+        hoverBackgroundColor: "#4eb4f5",
         data: [...new Set(getDatasets.map((n) => n.person_type_b))],
       },
       {
         label: "พนักงานราชการ",
-        backgroundColor: purple_orange_gradient2,
-        hoverBackgroundColor: purple_orange_gradient2,
+        backgroundColor: "#4eddaa",
+        hoverBackgroundColor: "#4eddaa",
         data: [...new Set(getDatasets.map((n) => n.person_type_c))],
       },
       {
         label: "พนักงานกระทรวงสาธารณสุข",
-        backgroundColor: purple_orange_gradient3,
-        hoverBackgroundColor: purple_orange_gradient3,
-        data: [...new Set(getDatasets.map((n) => n.person_type_b))],
+        backgroundColor: "#ffb07c",
+        hoverBackgroundColor: "#ffb07c",
+        data: [...new Set(getDatasets.map((n) => n.person_type_d))],
       },
       {
         label: "ลูกจ้างชั่วคราว",
-        backgroundColor: purple_orange_gradient4,
-        hoverBackgroundColor: purple_orange_gradient4,
+        backgroundColor: "#4f1ec4",
+        hoverBackgroundColor: "#4f1ec4",
         data: [...new Set(getDatasets.map((n) => n.person_type_e))],
       },
       {
         label: "ลูกจ้างรายวัน",
-        backgroundColor: purple_orange_gradient5,
-        hoverBackgroundColor: purple_orange_gradient5,
+        backgroundColor: "#1D6FA3",
+        hoverBackgroundColor: "#1D6FA3",
         data: [...new Set(getDatasets.map((n) => n.person_type_f))],
       },
       {
         label: "ลูกจ้างอื่นๆ",
-        backgroundColor: purple_orange_gradient6,
-        hoverBackgroundColor: purple_orange_gradient6,
+        backgroundColor: '#ff374c',
+        hoverBackgroundColor: '#ff374c',
         data: [...new Set(getDatasets.map((n) => n.person_type_other))],
+      },
+      {
+        label: "null",
+        backgroundColor: '#bd2000',
+        hoverBackgroundColor: '#8c0000',
+        data: [...new Set(getDatasets.map((n) => n.person_type_null))],
       }
     );
 
@@ -361,10 +367,10 @@ export default function Index() {
                     <i className="fas fa-users text-white font-large-2 float-left" />
                   </div>
                   <div className="media-body text-white text-right">
-                    <h3 className="text-white">
+                     <h3 className="text-white">
                       {typeSummary !== null ? (
                         <NumberFormat
-                          value={typeSummary.type_other.total}
+                          value={typeSummary.type_other_and_null.total}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={""}
@@ -375,7 +381,7 @@ export default function Index() {
                       {typeSummary !== null ? " คน" : ""}
                     </h3>
                     <span>
-                      {typeSummary !== null ? typeSummary.type_other.label : null}
+                      {/* {typeSummary !== null ? typeSummary.person_type_other_and_null.label : null} */}
                     </span>
                   </div>
                 </div>
@@ -437,6 +443,7 @@ export default function Index() {
 function ListSummary({ data }) {
   return (
     <>
+   
       <div className="card">
         <div className="card-header">
           {/* <h4 className="card-title">Recent Transactions</h4> */}

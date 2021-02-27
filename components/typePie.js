@@ -31,11 +31,11 @@ export default function Index() {
 
     if (typeSummary === null) return "";
     return {
-      labels: ["ข้าราชการ", "อื่นๆ"],
+      labels: ["ข้าราชการ", "อื่นๆ","ไม่ระบุ"],
       datasets: [
         {
           label: "My First Dataset",
-          data: [typeSummary.type_a.total, typeSummary.type_other_total.total],
+          data: [typeSummary.type_a.total, typeSummary.type_other.total,typeSummary.type_null_total.total],
           backgroundColor: [
             "rgb(255, 99, 132)",
             "rgb(54, 162, 235)",
@@ -55,27 +55,28 @@ export default function Index() {
 
   var options = {
     tooltips: {
-      enabled: false,
+      enabled: false
     },
     plugins: {
       datalabels: {
         formatter: (value, ctx) => {
-          let datasets = ctx.chart.data.datasets;
-          if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
-            let sum = datasets[0].data.reduce((a, b) => a + b, 0);
-            let percentage = Math.round((value / sum) * 100) + "%";
-            return percentage;
-          } else {
-            return percentage;
-          }
+          // let datasets = ctx.chart.data.datasets;
+          // if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+          //   let sum = datasets[0].data.reduce((a, b) => a + b, 0);
+          //   let percentage = Math.round((value / sum) * 100) + '%';
+          //   return percentage;
+          // } else {
+          //   return percentage;
+          // }
+          return value
         },
-        color: "#fff",
+        color: '#fff',
         font: {
-          weight: "bold",
+          weight: 'bold',
           size: 30,
-        },
+        }
       },
-    },
+    }
   };
 
   return (
