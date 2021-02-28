@@ -552,7 +552,7 @@ function ListSummary({ data }) {
                       <td className="text-truncate">
                         <h6 className="text-bold-600">
                           <NumberFormat
-                            value={item.man}
+                            value={item.male}
                             displayType={"text"}
                             thousandSeparator={true}
                             prefix={""}
@@ -562,7 +562,7 @@ function ListSummary({ data }) {
                       <td className="text-truncate">
                         <h6 className="text-bold-600">
                           <NumberFormat
-                            value={item.woman}
+                            value={item.female}
                             displayType={"text"}
                             thousandSeparator={true}
                             prefix={""}

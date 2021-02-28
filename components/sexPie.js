@@ -39,11 +39,11 @@ function PieChart() {
     purple_orange_gradient.addColorStop(1, "#4eb4f5");
 
     return {
-      labels: ["ชาย "+data.sexsummery.m+" คน", "หญิง "+data.sexsummery.f+" คน","ไม่ระบุ "+data.sexsummery.nottype+" คน"],
+      labels: ["ชาย "+data.male+" คน", "หญิง "+data.female+" คน","ไม่ระบุ "+data.nottype+" คน"],
       datasets: [
         {
           label: "My First Dataset",
-          data: [data.sexsummery.m, data.sexsummery.f,data.sexsummery.nottype],
+          data: [data.male, data.female,data.nottype],
           borderColor: "#fff",
           backgroundColor: [
             "rgb(255, 99, 132)",

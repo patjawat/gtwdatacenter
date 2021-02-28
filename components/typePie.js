@@ -12,7 +12,7 @@ export default function Index() {
 
   const getData = async () => {
     const datasets = await Axios.get("datacenter/persons/datasets");
-    const dataTypeSummary = await Axios.get("datacenter/persons/type-summary");
+    const dataTypeSummary = await Axios.get("datacenter/persons");
     setDataset(datasets.data.items);
     setTypeSummary(dataTypeSummary.data);
   };
@@ -31,14 +31,15 @@ export default function Index() {
 
     if (typeSummary === null) return "";
     return {
-      labels: ["ข้าราชการ", "อื่นๆ","ไม่ระบุ"],
+      labels: ["ข้าราชการ "+typeSummary.type_a+" คน", "อื่นๆ "+typeSummary.type_other+" คน","null  "+typeSummary.type_null+ " คน",],
       datasets: [
         {
           label: "My First Dataset",
-          data: [typeSummary.type_a.total, typeSummary.type_other.total,typeSummary.type_null_total.total],
+          data: [typeSummary.type_a,typeSummary.type_other,typeSummary.type_other],
           backgroundColor: [
-            "rgb(255, 99, 132)",
-            "rgb(54, 162, 235)",
+            "#3c46e1",
+            "#ff3146",
+            "#bd2102",
             "rgb(255, 205, 86)",
           ],
           hoverOffset: 4,
@@ -60,15 +61,14 @@ export default function Index() {
     plugins: {
       datalabels: {
         formatter: (value, ctx) => {
-          // let datasets = ctx.chart.data.datasets;
-          // if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
-          //   let sum = datasets[0].data.reduce((a, b) => a + b, 0);
-          //   let percentage = Math.round((value / sum) * 100) + '%';
-          //   return percentage;
-          // } else {
-          //   return percentage;
-          // }
-          return value
+          let datasets = ctx.chart.data.datasets;
+          if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+            let sum = datasets[0].data.reduce((a, b) => a + b, 0);
+            let percentage = Math.round((value / sum) * 100) + '%';
+            return percentage;
+          } else {
+            return percentage;
+          }
         },
         color: '#fff',
         font: {
