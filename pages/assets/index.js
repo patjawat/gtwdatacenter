@@ -58,6 +58,12 @@ export default function Index() {
 
   var options = {
     responsive: true,
+    layout: {
+      padding: {
+        left: -650,
+        
+      }
+    },
     legend: {
         position: 'top',
         display: true,

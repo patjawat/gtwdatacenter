@@ -57,7 +57,8 @@ class MyDocument extends Document {
         <script src="static/data/jvector/visitor-data.js"></script>
         <script src="static/js/core/app-menu.js"></script>
         <script src="static/js/core/app.js"></script>
-
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
         </body>
       </Html>
     );

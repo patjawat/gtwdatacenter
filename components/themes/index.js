@@ -40,8 +40,9 @@ export default function AdminLte3({ children }) {
 
 
   const getData = async () => {
-    // const { data } = await axios.get('datacenter')
-    // dispatch({type: 'GET_INFOMATION',payload: data});
+    const { data } = await axios.get('datacenter')
+    dispatch({type: 'GET_INFOMATION',payload: data});
+    console.log('loading theme')
   }
 
   return (

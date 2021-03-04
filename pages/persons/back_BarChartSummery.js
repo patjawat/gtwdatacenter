@@ -6,6 +6,12 @@ export default function BarChartSummery(props) {
 
   var options = {
     responsive: true,
+    layout: {
+      padding: {
+        left: -280,
+        
+      }
+    },
     legend: {
         position: 'top',
         display: true,
@@ -34,6 +40,10 @@ export default function BarChartSummery(props) {
         display: false,
         text: ''
     },
+    onClick: (e, item) => {
+      // console.log(`Item with text ${item[0]._index} and index ${item[0]._datasetIndex} clicked`);
+      console.log(item)
+  }
 
   };
 
@@ -41,11 +51,11 @@ export default function BarChartSummery(props) {
 
     return (
         <div>
+          <h1>XXX</h1>
                  <Bar
                         data={dataChart}
                         height={100}
                         options={options}
-                       
                       />
 
         </div>
