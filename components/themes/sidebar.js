@@ -101,7 +101,7 @@ export default function Sidebar() {
             <li className="nav-item">
               <Link href="/">
                 <a href="" className="nav-link">
-                  <i className="far fa-circle nav-icon" />
+                  <i className="fas fa-home nav-icon" />
                   <p>Home</p>
                 </a>
               </Link>
@@ -109,7 +109,7 @@ export default function Sidebar() {
             <li className="nav-item">
               <Link href="/persons/items">
                 <a href="" className="nav-link">
-                  <i className="far fa-circle nav-icon" />
+                  <i className="far fa-user nav-icon" />
                   <p>บุคคลากร</p>
                 </a>
               </Link>

@@ -10,6 +10,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
+        <meta charSet="utf-8" />
         <Head />
         <link rel="stylesheet" href="css/palette-gradient.css"></link>
         <body className="sidebar-mini sidebar-collapse">
