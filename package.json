@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build && next export -o datacenterv2 && sh /Users/patjawat/dev/gotowin/datacenter/gtwdatacenter/synctoserver.sh",
+        "build": "next build && next export -o ../datacenterv2 && sh /Users/patjawat/dev/gotowin/datacenter/gtwdatacenter/synctoserver.sh",
         "start": "next start"
     },
     "dependencies": {

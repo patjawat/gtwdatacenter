@@ -89,7 +89,7 @@ export default function Items() {
         // onCancel={() => setVisible(false)}
         width={1000}
         footer={[
-            <Button key="3" type="primary" onClick={() => setVisible(false)}>
+            <Button key="3" type="danger" onClick={() => setVisible(false)}>
               ปิด
             </Button>
           ]}
