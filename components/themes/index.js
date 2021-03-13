@@ -1,68 +1,23 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import Cookies from "js-cookie";
-import axios from "../../axios.config";
-import Header from "./header";
-import Sidebar from "./sidebar";
-import Content from "./content";
-import Footer from "./footer";
+import React from 'react'
+import Content from './content'
+import Footer from './footer'
+import Navbar from './navbar'
+import Sidebar from './sidebar'
+import SidebarControl from './sidebarControl'
+import SidebarOverlay from './sidebarOverlay'
 
-export default function AdminLte3({ children }) {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const store = useSelector((state) => state);
-  const token = Cookies.get("token");
+export default function Index({children}) {
+    return (
+        <div>
+            <Navbar />
+            <Sidebar />
+            <Content>
+            {children}
 
-  useEffect( async () => {
-  //   (async () => {
-  //     // ตรวจสอบ user Login
-  //     if(!token){
-  //       router.push('/login')
-  //     }
-
-  //     if (!store.user) {
-  //       try{
-  //         const { data } = await axios.get('user')
-  //         dispatch({type: 'GET_USER',payload: data});
-  //       } catch(error) {
-  //   console.log("error", error);
-  //   router.push('/login')
-
-  //   // appropriately handle the error
-  // }
-      
-  //     }
-  //     // จบดารตรวจสอบ User login
-  //   })();
-  // await getData()
-  }, []);
-
-
-  const getData = async () => {
-    const { data } = await axios.get('datacenter')
-    dispatch({type: 'GET_INFOMATION',payload: data});
-    console.log('loading theme')
-  }
-
-  return (
-    <>
-      <Header />
-      <Sidebar />
-
-      <div className="app-content content">
-        <div className="content-overlay" />
-        <div className="content-wrapper">
-          <div className="content-header row">
-            
-          </div>
-          <div className="content-body">
-          {children}
-          </div>
+            </Content>
+            <Footer />
+            <SidebarControl />
+            <SidebarOverlay />
         </div>
-      </div>
-      <Footer />
-
-    </>
-  );
+    )
 }

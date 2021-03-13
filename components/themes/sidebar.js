@@ -1,172 +1,133 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
-export default function sidebar() {
-  const router = useRouter();
-
-  if (router.pathname == "/assets" || router.pathname == '/assets-list') {
-    return (
-      <div
-        className="main-menu menu-fixed menu-dark menu-accordion menu-shadow"
-        data-scroll-to-active="true"
-        style={{
-          touchAction: "none",
-          userSelect: "none",
-          WebkitUserDrag: "none",
-          WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
-        }}
-      >
-        <div
-          className="main-menu-content ps ps--active-y"
-          style={{ height: "654.75px" }}
-        >
-          <ul
-            className="navigation navigation-main"
-            id="main-menu-navigation"
-            data-menu="menu-navigation"
-          >
-            <li className="nav-item">
-              <Link href="/">
-                <a>
-                  <i className="la la-home" />
-
-                  <span className="menu-title">Dashboard</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/assets-list">
-                <a>
-                  <i className="la la-search" />
-
-                  <span className="menu-title">ครุภัณฑ์</span>
-                </a>
-              </Link>
-            </li>
-          </ul>
-          <div className="ps__rail-x" style={{ left: 0, bottom: 0 }}>
-            <div
-              className="ps__thumb-x"
-              tabIndex={0}
-              style={{ left: 0, width: 0 }}
+export default function Sidebar() {
+  return (
+    <aside className="main-sidebar sidebar-dark-primary elevation-4">
+      {/* Brand Logo */}
+      <a href="../../index3.html" className="brand-link">
+        <img
+          src="/datacenterv2/img/logo.png"
+          alt="AdminLTE Logo"
+          className="brand-image img-circle elevation-3"
+          style={{ opacity: ".8" }}
+        />
+        <span className="brand-text font-weight-light">DataCenter</span>
+      </a>
+      {/* Sidebar */}
+      <div className="sidebar">
+        {/* Sidebar user (optional) */}
+        {/* <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div className="image">
+        <img src="/datacenterv2/img/default-profile.png" className="img-circle elevation-2" alt="User Image" />
+      </div>
+      <div className="info">
+        <a href="#" className="d-block">Alexander Pierce</a>
+      </div>
+    </div> */}
+        {/* SidebarSearch Form */}
+        <div className="form-inline">
+          <div className="input-group" data-widget="sidebar-search">
+            <input
+              className="form-control form-control-sidebar"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
             />
+            <div className="input-group-append">
+              <button className="btn btn-sidebar">
+                <i className="fas fa-search fa-fw" />
+              </button>
+            </div>
           </div>
-          <div className="ps__rail-y" style={{ top: 0, height: 299, right: 0 }}>
-            <div
-              className="ps__thumb-y"
-              tabIndex={0}
-              style={{ top: 0, height: 21 }}
-            />
+          <div className="sidebar-search-results">
+            <div className="list-group">
+              <a href="#" className="list-group-item">
+                <div className="search-title">
+                  <b className="text-light" />N<b className="text-light" />o
+                  <b className="text-light" /> <b className="text-light" />e
+                  <b className="text-light" />l<b className="text-light" />e
+                  <b className="text-light" />m<b className="text-light" />e
+                  <b className="text-light" />n<b className="text-light" />t
+                  <b className="text-light" /> <b className="text-light" />f
+                  <b className="text-light" />o<b className="text-light" />u
+                  <b className="text-light" />n<b className="text-light" />d
+                  <b className="text-light" />!<b className="text-light" />
+                </div>
+                <div className="search-path"></div>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    );
-  } else if (router.pathname == "/persons") {
-    return (
-      <div
-        className="main-menu menu-fixed menu-dark menu-accordion menu-shadow"
-        data-scroll-to-active="true"
-        style={{
-          touchAction: "none",
-          userSelect: "none",
-          WebkitUserDrag: "none",
-          WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
-        }}
-      >
-        <div
-          className="main-menu-content ps ps--active-y"
-          style={{ height: "654.75px" }}
-        >
+        {/* Sidebar Menu */}
+        <nav className="mt-2">
           <ul
-            className="navigation navigation-main"
-            id="main-menu-navigation"
-            data-menu="menu-navigation"
+            className="nav nav-pills nav-sidebar flex-column"
+            data-widget="treeview"
+            role="menu"
+            data-accordion="false"
           >
+            {/* Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library */}
+            {/* <li className="nav-item">
+          <a href="#" className="nav-link">
+            <i className="nav-icon fas fa-tachometer-alt" />
+            <p>
+              Dashboard
+              <i className="right fas fa-angle-left" />
+            </p>
+          </a>
+          <ul className="nav nav-treeview">
+            <li className="nav-item">
+              <a href="../../index.html" className="nav-link">
+                <i className="far fa-circle nav-icon" />
+                <p>Dashboard v1</p>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="../../index2.html" className="nav-link">
+                <i className="far fa-circle nav-icon" />
+                <p>Dashboard v2</p>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="../../index3.html" className="nav-link">
+                <i className="far fa-circle nav-icon" />
+                <p>Dashboard v3</p>
+              </a>
+            </li>
+          </ul>
+        </li> */}
             <li className="nav-item">
               <Link href="/">
-                <a>
-                  <i className="la la-home" />
-
-                  <span className="menu-title">
-                    Dashboard
-                  </span>
+                <a href="" className="nav-link">
+                  <i className="far fa-circle nav-icon" />
+                  <p>Home</p>
                 </a>
               </Link>
             </li>
-          </ul>
-          <div className="ps__rail-x" style={{ left: 0, bottom: 0 }}>
-            <div
-              className="ps__thumb-x"
-              tabIndex={0}
-              style={{ left: 0, width: 0 }}
-            />
-          </div>
-          <div className="ps__rail-y" style={{ top: 0, height: 299, right: 0 }}>
-            <div
-              className="ps__thumb-y"
-              tabIndex={0}
-              style={{ top: 0, height: 21 }}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div
-        className="main-menu menu-fixed menu-dark menu-accordion menu-shadow"
-        data-scroll-to-active="true"
-        style={{
-          touchAction: "none",
-          userSelect: "none",
-          WebkitUserDrag: "none",
-          WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
-        }}
-      >
-        <div
-          className="main-menu-content ps ps--active-y"
-          style={{ height: "654.75px" }}
-        >
-          <ul
-            className="navigation navigation-main"
-            id="main-menu-navigation"
-            data-menu="menu-navigation"
-          >
             <li className="nav-item">
-              <Link href="/">
-                <a>
-                  <i className="la la-home" />
-
-                  <span className="menu-title">Dashboard</span>
+              <Link href="/persons/items">
+                <a href="" className="nav-link">
+                  <i className="far fa-circle nav-icon" />
+                  <p>บุคคลากร</p>
                 </a>
               </Link>
             </li>
             {/* <li className="nav-item">
-            <Link href="/settings">
-              <a>
-                <i className="la la-cog" />
-                <span className="menu-title">Settings</span>
+        <Link href="/persons">
+
+              <a href="" className="nav-link">
+                <i className="far fa-circle nav-icon" />
+                <p>Persons</p>
               </a>
-            </Link>
-          </li> */}
+        </Link>
+            </li> */}
           </ul>
-          <div className="ps__rail-x" style={{ left: 0, bottom: 0 }}>
-            <div
-              className="ps__thumb-x"
-              tabIndex={0}
-              style={{ left: 0, width: 0 }}
-            />
-          </div>
-          <div className="ps__rail-y" style={{ top: 0, height: 299, right: 0 }}>
-            <div
-              className="ps__thumb-y"
-              tabIndex={0}
-              style={{ top: 0, height: 21 }}
-            />
-          </div>
-        </div>
+        </nav>
+        {/* /.sidebar-menu */}
       </div>
-    );
-  }
+      {/* /.sidebar */}
+    </aside>
+  );
 }

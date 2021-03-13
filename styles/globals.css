@@ -1,32 +1,46 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100&family=Open+Sans:wght@300&display=swap");
+@import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;1,100&family=Prompt:wght@200&display=swap');@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Prompt:wght@200&display=swap');
+
+@import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+@import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import '~admin-lte/dist/css/adminlte.min.css';
+
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Kanit", sans-serif !important;
+  /* font-family: 'Kanit', sans-serif; */
+  font-weight: 300;
+  font-family: 'Kanit',-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  margin-bottom: 0.5rem;
-  /* font-family: "Quicksand", Georgia, "Times New Roman", Times, serif; */
-  font-weight: 400;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  font-family: inherit;
+  font-weight: 500;
   line-height: 1.2;
-  color: #464855;
+  color: inherit;
+  font-weight: 300;
 }
-.bg-gradient-directional-custom1 {
-  background-image: linear-gradient(45deg, #3813C2, #FF6FD8);
-  background-repeat: repeat-x;
+
+.bg-gradient-purple {
+  background: #007bff -moz-linear-gradient(top,#268fff,#007bff) repeat-x!important;
+  background: #800080 linear-gradient(
+170deg
+,#ec17ec,#800080) repeat-x!important;
+  color: #fff;
 }
-.bg-gradient-directional-custom2 {
-  background-image: linear-gradient(45deg,#1D6FA3, #65FDF0);
-  background-repeat: repeat-x;
-}
+
 

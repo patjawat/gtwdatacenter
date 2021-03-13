@@ -1,1 +1,1 @@
-rsync -av --delete  datacenterv2 root@27.254.191.157:/var/www/html/ 
+rsync -av --delete  datacenterv2 root@27.254.191.157:/var/www/html/

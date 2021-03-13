@@ -7,6 +7,7 @@ import bookReducer from './book/bookReducer'
 import userReducer from './user/userReducer'
 import infomationReducer from './infomation/infomationReducer'
 import personReducer from './persons/personReducer'
+import searchReducer from './search/searchReducer'
 
 const rootReducer = combineReducers({
   auth:authReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   book:bookReducer,
   user:userReducer,
   infomation:infomationReducer,
-  persons:personReducer
+  persons:personReducer,
+  search:searchReducer
 })
 
 export default rootReducer;

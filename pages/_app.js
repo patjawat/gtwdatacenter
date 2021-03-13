@@ -4,6 +4,7 @@ import Router from 'next/router';
 // add nprogress module
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import 'antd/dist/antd.css';
 
 // add Redux Store
 import { Provider } from 'react-redux'
@@ -15,6 +16,7 @@ import store from '../redux/store'
 // add css Style
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../styles/globals.css'
+
 
 export default function MyApp({ Component, pageProps, ...rest }) {
   

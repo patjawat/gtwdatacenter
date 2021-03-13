@@ -1,29 +1,15 @@
-import React, { useState,useEffect } from "react";
-import { useRouter,withRouter } from 'next/router'
-import axios from 'axios'
-// add css Style
+import React from 'react'
+import Content from './content'
+import Footer from './footer'
+import Navbar from './navbar'
+import Sidebar from './sidebar'
+import SidebarControl from './sidebarControl'
+import SidebarOverlay from './sidebarOverlay'
 
-
-export default function BlankLayout({ children }) {
-
-  // const [data, setData] = useState({ courses: [] });
-    
-  // useEffect(() => {
-  //     (async () => {
-  //         const result = await axios.get(
-  //             "https://jsonplaceholder.typicode.com/posts"
-  //         );
-  //         setData(result.data);
-  //     })();
-  // }, []);
-      
-  // console.log(data);
-
-  return (
-    <>
-    <div className="container_blank">
-          {children}
-    </div>
-    </>
-  )
+export default function BlankLayout({children}) {
+    return (
+        <div>
+            {children}
+        </div>
+    )
 }
