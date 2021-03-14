@@ -106,14 +106,41 @@ export default function Sidebar() {
                 </a>
               </Link>
             </li>
+        <li className="nav-header"> บุคคลากร</li>
             <li className="nav-item">
               <Link href="/persons/items">
                 <a href="" className="nav-link">
                   <i className="far fa-user nav-icon" />
-                  <p>บุคคลากร</p>
+                  <p>ค้นหาบุคคลากรทั้งหมด</p>
                 </a>
               </Link>
             </li>
+<li className="nav-item">
+  <a href="#" className="nav-link">
+    <i className="nav-icon fas fa-search" />
+    <p>
+      รายงาน
+      <i className="fas fa-angle-left right" />
+    </p>
+  </a>
+  <ul className="nav nav-treeview" style={{display: 'none'}}>
+    <li className="nav-item">
+    <Link href="/persons/profession">
+      <a href="#" className="nav-link">
+        <i className="far fa-circle nav-icon" />
+        <p>บุคลากรทุกวิชาชีพ</p>
+      </a>
+      </Link>
+    </li>
+    <li className="nav-item">
+      <a href="pages/search/enhanced.html" className="nav-link">
+        <i className="far fa-circle nav-icon" />
+        <p>Enhanced</p>
+      </a>
+    </li>
+  </ul>
+</li>
+
             {/* <li className="nav-item">
         <Link href="/persons">
 

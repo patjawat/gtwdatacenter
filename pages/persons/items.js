@@ -7,6 +7,7 @@ import Axios from "../../axios.config";
 import { useForm } from "react-hook-form";
 import { Modal, Button } from "antd";
 import moment from "moment";
+import Highlighter from "react-highlight-words";
 import {
   TabContent,
   TabPane,
@@ -140,7 +141,10 @@ export default function Items() {
           </div>
         </div>
         {/* /.card-header */}
-        <div className="card-body table-responsive p-0" style={{height: '430px'}}>
+        <div
+          className="card-body table-responsive p-0"
+          style={{ height: "430px" }}
+        >
           {loading ? (
             <h1 className="text-center">loading...</h1>
           ) : (
@@ -160,20 +164,68 @@ export default function Items() {
                   </th>
                 </tr>
               </thead>
+
               <tbody>
                 {persons.map((item, i) => {
                   return (
                     <tr key={i}>
                       <td>{(i = i + 1)}</td>
-                      <td>{item.HOSPCODE}</td>
                       <td>
-                        {item.HR_FNAME + " "} {item.HR_LNAME}
+                        <Highlighter
+                          highlightClassName="YourHighlightClass"
+                          searchWords={[search.key]}
+                          autoEscape={true}
+                          textToHighlight={item.HOSPCODE}
+                        />
                       </td>
-                      <td>{item.POSITION_IN_WORK}</td>
-                      <td>{item.HR_LEVEL_NAME}</td>
-                      <td>{item.name}</td>
-                      <td>{item.province}</td>
-                      <td>{item.HR_PERSON_TYPE_NAME}</td>
+                      <td>
+                        <Highlighter
+                          highlightClassName="YourHighlightClass"
+                          searchWords={[search.key]}
+                          autoEscape={true}
+                          textToHighlight={item.HR_FNAME + " " + item.HR_LNAME}
+                        />
+                      </td>
+                      <td>
+                        <Highlighter
+                          highlightClassName="YourHighlightClass"
+                          searchWords={[search.key]}
+                          autoEscape={true}
+                          textToHighlight={item.POSITION_IN_WORK}
+                        />
+                      </td>
+                      <td>
+                        <Highlighter
+                          highlightClassName="YourHighlightClass"
+                          searchWords={[search.key]}
+                          autoEscape={true}
+                          textToHighlight={item.HR_LEVEL_NAME}
+                        />
+                      </td>
+                      <td>
+                        <Highlighter
+                          highlightClassName="YourHighlightClass"
+                          searchWords={[search.key]}
+                          autoEscape={true}
+                          textToHighlight={item.name}
+                        />
+                      </td>
+                      <td>
+                        <Highlighter
+                          highlightClassName="YourHighlightClass"
+                          searchWords={[search.key]}
+                          autoEscape={true}
+                          textToHighlight={item.province}
+                        />
+                      </td>
+                      <td>
+                        <Highlighter
+                          highlightClassName="YourHighlightClass"
+                          searchWords={[search.key]}
+                          autoEscape={true}
+                          textToHighlight={item.HR_PERSON_TYPE_NAME}
+                        />
+                      </td>
                       <td style={{ textAlign: "center" }}>
                         <Button
                           className="btn btn-outline-primary btn-xs"
@@ -208,15 +260,18 @@ export default function Items() {
                           params: { key: search.key, page: item.label },
                         }
                       );
-                      console.log(data)
+                      console.log(data);
                       setPersons(data.data);
                       setLoading(false);
                       setTotal(data.total);
                       setLinks(data.links);
                     }}
                   >
-                     
-                    {item.label === "&laquo; Previous" ? 'Previous' : (item.label === "Next &raquo;" ? 'Next' : item.label) } 
+                    {item.label === "&laquo; Previous"
+                      ? "Previous"
+                      : item.label === "Next &raquo;"
+                      ? "Next"
+                      : item.label}
                   </a>
                 </li>
               );

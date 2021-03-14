@@ -35,7 +35,6 @@ export default function Home(props) {
 
     setBranch(summary.data.branchs);
 
-    dispatch({ type: "THEME_LOADING", payload: true });
     const { data } = await Axios.get("datacenter/assets/datasets");
     await setTypeGroup(data);
     await setCategories([...new Set(data.map((n) => n.name))]);
