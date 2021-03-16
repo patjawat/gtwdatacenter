@@ -34,6 +34,7 @@ export default function Items() {
 
   const onSubmit = (data) => {
     console.log(data);
+    dispatch({ type: "THEME_LOADING" });
 
     dispatch({ type: "SEARCH_KEY", payload: { key: data.search } });
     setLoading(true);
@@ -44,7 +45,10 @@ export default function Items() {
 
   function InfoModal() {}
 
-  useEffect(() => {}, []);
+  useEffect(async () => {
+    await dispatch({ type: "THEME_LOADING" });
+    await dispatch({ type: "THEME_COMPLATE" });
+  }, []);
 
   async function getPersons(key) {
     let { data } = await Axios.get("datacenter/persons/items", {
@@ -55,6 +59,7 @@ export default function Items() {
     setLoading(false);
     setTotal(data.total);
     setLinks(data.links);
+    await dispatch({ type: "THEME_COMPLATE" });
   }
 
   function getProfile(item) {
@@ -254,6 +259,8 @@ export default function Items() {
                     className="page-link"
                     href="#"
                     onClick={async () => {
+                      await dispatch({ type: "THEME_LOADING" });
+
                       let { data } = await Axios.get(
                         "datacenter/persons/items",
                         {
@@ -265,6 +272,7 @@ export default function Items() {
                       setLoading(false);
                       setTotal(data.total);
                       setLinks(data.links);
+                      await dispatch({ type: "THEME_COMPLATE" });
                     }}
                   >
                     {item.label === "&laquo; Previous"

@@ -18,17 +18,20 @@ export default function Home(props) {
   const dispatch = useDispatch();
 
   const [dataset, setDataset] = useState([]);
-  const [typeGroup, setTypeGroup] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [typeGroup, setTypeGroup] = useState([]);
   const [summary, setSummary] = useState(0);
   const [branch, setBranch] = useState(0);
 
   useEffect(async () => {
+    await dispatch({ type: "THEME_LOADING" });
+
     await getDataset();
   }, []);
 
   const getDataset = async () => {
     console.log("loading home");
+
 
     const summary = await Axios.get("datacenter");
     setSummary(summary.data.summary);
@@ -51,21 +54,23 @@ export default function Home(props) {
         color: "#ff7216",
       },
     ]);
+    await dispatch({ type: "THEME_COMPLATE" });
 
     // โหลดข้อมูล บุคลากร
-    await persons
-      .getAll()
-      .then((res) => {
-        dispatch({ type: "GET_PERSON", payload: res.data });
-        dispatch({ type: "THEME_COMPLATE" });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    // await persons
+    //   .getAll()
+    //   .then((res) => {
+    //     dispatch({ type: "GET_PERSON", payload: res.data });
+    //     dispatch({ type: "THEME_COMPLATE" });
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   };
 
   return (
     <>
+    {JSON.stringify(isLoading)}
       <div className="row">
         <div className="col-3">
           <SmallBox

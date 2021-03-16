@@ -5,14 +5,15 @@ import Navbar from "./navbar";
 import Sidebar from "./sidebar";
 import SidebarControl from "./sidebarControl";
 import SidebarOverlay from "./sidebarOverlay";
-import Spinner from "react-spinner-material";
-import { useSelector, useDispatch } from "react-redux";
+import IsLoading from "@/components/IsLoading";
+
 
 export default function Index({ children }) {
-  const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.theme.isLoading);
+ 
+
   return (
     <div>
+      <IsLoading />
       <Navbar />
       <Sidebar />
       <Content>{children}</Content>

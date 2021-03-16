@@ -1,10 +1,15 @@
 import React from "react";
-import Spinner from "react-spinner-material";
+import { Dimmer, Loader, Image, Segment } from "semantic-ui-react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function IsLoading() {
-  return (
-    <div style={{ marginLeft: "40%", paddingTop: "10%" }}>
-      <Spinner radius={130} color={"#e83e8c"} stroke={3} visible={true} />
-    </div>
-  );
+  const store = useSelector((state) => state);
+  const isLoading = store.theme.isLoading;
+  
+  if(isLoading){
+    return <Dimmer active inverted><Loader inverted content="Loading" /></Dimmer>
+  }else{
+    return null;
+  }
+
 }

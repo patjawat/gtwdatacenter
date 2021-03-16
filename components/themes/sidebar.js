@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
+
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       {/* Brand Logo */}
@@ -97,16 +100,17 @@ export default function Sidebar() {
               </a>
             </li>
           </ul>
+
         </li> */}
             <li className="nav-item">
-              <Link href="/">
-                <a href="" className="nav-link">
+              <Link href="/" >
+                <a href="" className="nav-link" >
                   <i className="fas fa-home nav-icon" />
                   <p>Home</p>
                 </a>
               </Link>
             </li>
-        <li className="nav-header"> บุคคลากร</li>
+            <li className="nav-header"> บุคคลากร</li>
             <li className="nav-item">
               <Link href="/persons/items">
                 <a href="" className="nav-link">
@@ -115,31 +119,39 @@ export default function Sidebar() {
                 </a>
               </Link>
             </li>
-<li className="nav-item">
-  <a href="#" className="nav-link">
-    <i className="nav-icon fas fa-search" />
-    <p>
-      รายงาน
-      <i className="fas fa-angle-left right" />
-    </p>
-  </a>
-  <ul className="nav nav-treeview" style={{display: 'none'}}>
-    <li className="nav-item">
-    <Link href="/persons/profession">
-      <a href="#" className="nav-link">
-        <i className="far fa-circle nav-icon" />
-        <p>บุคลากรทุกวิชาชีพ</p>
-      </a>
-      </Link>
-    </li>
-    <li className="nav-item">
-      <a href="pages/search/enhanced.html" className="nav-link">
-        <i className="far fa-circle nav-icon" />
-        <p>Enhanced</p>
-      </a>
-    </li>
-  </ul>
-</li>
+            <li className="nav-item">
+              <a href="#" className="nav-link">
+                <i className="nav-icon fas fa-search" />
+                <p>
+                  รายงาน
+                  <i className="fas fa-angle-left right" />
+                </p>
+              </a>
+              <ul className="nav nav-treeview" style={{ display: "none" }}>
+                <li className="nav-item">
+                  <Link href="/persons/position">
+                    <a href="#" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>บุคลากรทุกวิชาชีพ</p>
+                    </a>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link href="/persons/profession">
+                    <a href="#" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>บุคลากรแยกตามวิชาชีพ</p>
+                    </a>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <a href="pages/search/enhanced.html" className="nav-link">
+                    <i className="far fa-circle nav-icon" />
+                    <p>Enhanced</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
             {/* <li className="nav-item">
         <Link href="/persons">
