@@ -34,16 +34,15 @@ export default function Items() {
 
   const onSubmit = (data) => {
     console.log(data);
-    dispatch({ type: "THEME_LOADING" });
+    // dispatch({ type: "THEME_LOADING" });
 
-    dispatch({ type: "SEARCH_KEY", payload: { key: data.search } });
-    setLoading(true);
-    getPersons(data.search);
+    // dispatch({ type: "SEARCH_KEY", payload: { key: data.search } });
+    // setLoading(true);
+    // getPersons(data.search);
   };
 
   const [visible, setVisible] = useState(false);
 
-  function InfoModal() {}
 
   useEffect(async () => {
     await dispatch({ type: "THEME_LOADING" });
@@ -120,7 +119,7 @@ export default function Items() {
             รายการ
           </h3>
           <div className="card-tools">
-            <form
+            {/* <form
               className="form-inline ml-3"
               onSubmit={handleSubmit(onSubmit)}
             >
@@ -142,7 +141,7 @@ export default function Items() {
                   </button>
                 </div>
               </div>
-            </form>
+            </form> */}
           </div>
         </div>
         {/* /.card-header */}

@@ -144,12 +144,7 @@ export default function Sidebar() {
                     </a>
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <a href="pages/search/enhanced.html" className="nav-link">
-                    <i className="far fa-circle nav-icon" />
-                    <p>Enhanced</p>
-                  </a>
-                </li>
+               
               </ul>
             </li>
 

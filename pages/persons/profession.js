@@ -40,7 +40,7 @@ export default function Profession() {
 
   const Select = React.forwardRef(({ label }, ref) => (
     <>
-      <label>{label}</label>
+      {/* <label>{label}</label> */}
       <select name={label} ref={ref}>
         <option value="">Select</option>
         {personType.map((item, i) => {
@@ -57,11 +57,11 @@ export default function Profession() {
   const getPerson = async () => {
     const { data } = await Axios.get("datacenter/persons");
     const personType = await Axios.get("datacenter/persons/type");
-    setPersonType(personType.data);
-    setItems(data.datasets.items);
+    await setPersonType(personType.data);
+    await setItems(data.datasets.items);
     // setIsLoading(false);
 
-    setDataset([
+    await setDataset([
       {
         name: "ข้าราชการ",
         color: "#676fe8",
@@ -124,10 +124,10 @@ export default function Profession() {
       //   },
     ]);
 
-    setCategories([
+    await setCategories([
       ...new Set(data.datasets.items.map((item, i) => item.name)),
     ]);
-    dispatch({ type: "THEME_COMPLATE" });
+    await dispatch({ type: "THEME_COMPLATE" });
 
   };
 

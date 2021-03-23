@@ -70,7 +70,6 @@ export default function Home(props) {
 
   return (
     <>
-    {JSON.stringify(isLoading)}
       <div className="row">
         <div className="col-3">
           <SmallBox

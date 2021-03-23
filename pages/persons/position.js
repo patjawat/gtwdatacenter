@@ -3,13 +3,15 @@ import Theme from "@/components/themes";
 import Axios from "../../axios.config";
 import { useSelector, useDispatch } from "react-redux";
 export default function Position() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [data, setData] = useState([]);
   const [links, setLinks] = useState([]);
 
-  useEffect(() => {
-    loadData();
+  useEffect( async () => {
+    await dispatch({ type: "THEME_LOADING" });
+
+    await loadData();
     console.log("component didmout");
   }, []);
 
@@ -20,6 +22,8 @@ export default function Position() {
     console.log(res);
     setData(res.data.items.data);
     setLinks(res.data.items.links);
+    await dispatch({ type: "THEME_COMPLATE" });
+
     console.log("loading data");
   }
 
@@ -80,7 +84,7 @@ export default function Position() {
                     className="page-link"
                     href="#"
                     onClick={async () => {
-                      setIsLoading(true);
+                      await dispatch({ type: "THEME_LOADING" });
 
                       let res = await Axios.get(
                         "datacenter/persons/reports-position-in-province",
@@ -92,7 +96,8 @@ export default function Position() {
                       setData(res.data.items.data);
                       setLinks(res.data.items.links);
                       console.log("loading data");
-                      setIsLoading(false);
+                      await dispatch({ type: "THEME_COMPLATE" });
+                      
                     }}
                   >
                     {item.label === "&laquo; Previous"

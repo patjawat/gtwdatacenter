@@ -4,8 +4,11 @@ import Theme from "@/components/themes";
 import Axios from "../../axios.config";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Index() {
+  const dispatch = useDispatch();
+
   const [persons, setPersons] = useState(0);
   const [categories, setCategories] = useState([]);
   const [series, setSeries] = useState([]);
@@ -13,6 +16,8 @@ export default function Index() {
   const [sexType, setSexType] = useState([]);
 
   useEffect(async () => {
+    await dispatch({ type: "THEME_LOADING" });
+
     await getPerson();
   }, []);
 
@@ -109,6 +114,7 @@ export default function Index() {
           },
         ],
       },
+
     ]);
 
     setSexType([
@@ -134,6 +140,7 @@ export default function Index() {
         ],
       },
     ]);
+    await dispatch({ type: "THEME_COMPLATE" });
 
     // setBranch(data.branchs);
   };
